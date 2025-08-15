@@ -7,7 +7,9 @@ export default defineNuxtRouteMiddleware((to) => {
   const authStore = useAuthStore()
   
   // Pages that don't require authentication
-  const publicPages = ['/', '/auth/login', '/auth/register', '/auth/forgot-password', '/landing']
+  const publicPages = ['/auth/login', '/auth/register', '/auth/forgot-password', '/landing']
+  // Auth pages that authenticated users should be redirected away from
+  const authPages = ['/auth/login', '/auth/register', '/auth/forgot-password']
   
   // Wait for auth to initialize
   if (authStore.loading) {
@@ -16,17 +18,20 @@ export default defineNuxtRouteMiddleware((to) => {
   
   // If user is not authenticated
   if (!authStore.isAuthenticated) {
-    // Open landing on root
+    // Redirect root to landing
     if (to.path === '/') {
       return navigateTo('/landing')
     }
+    // Allow access to public pages, redirect others to login
     if (!publicPages.includes(to.path)) {
       return navigateTo('/auth/login')
     }
   }
   
-  // If user is authenticated and trying to access auth pages, redirect to dashboard
-  if (authStore.isAuthenticated && publicPages.includes(to.path)) {
-    return navigateTo('/')
+  // If user is authenticated and trying to access auth pages or landing, redirect to dashboard
+  if (authStore.isAuthenticated) {
+    if (authPages.includes(to.path) || to.path === '/landing') {
+      return navigateTo('/')
+    }
   }
 })

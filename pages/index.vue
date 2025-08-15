@@ -155,13 +155,8 @@ definePageMeta({
   title: 'Dashboard'
 })
 
-// Skip during static generation - throw error to prevent prerendering
-if (process.server && (!process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.env.NODE_ENV === 'production')) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Page not available during static generation'
-  })
-}
+// Skip Firebase operations during static generation
+const isStaticGeneration = process.server && (!process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.env.NODE_ENV === 'production')
 
 const authStore = useAuthStore()
 const mealsStore = useMealsStore()
@@ -170,6 +165,8 @@ const openWeightModal = ref(false)
 
 // Load today's meals on mount with error handling
 onMounted(async () => {
+  if (isStaticGeneration) return
+  
   try {
     if (authStore.isAuthenticated) {
       await mealsStore.loadTodaysMeals()
@@ -181,6 +178,14 @@ onMounted(async () => {
 
 // Computed properties with fallbacks
 const dailyMacros = computed(() => {
+  if (isStaticGeneration) {
+    return {
+      consumed: { kcal: 0, protein: 0, carbs: 0, fat: 0 },
+      goals: { kcal: 2000, protein: 100, carbs: 250, fat: 67 },
+      percentages: { kcal: 0, protein: 0, carbs: 0, fat: 0 }
+    }
+  }
+  
   try {
     return mealsStore.dailyMacros
   } catch (error) {
@@ -194,6 +199,8 @@ const dailyMacros = computed(() => {
 })
 
 const recentMeals = computed(() => {
+  if (isStaticGeneration) return []
+  
   try {
     return mealsStore.todaysMeals.slice(-3) // Show last 3 meals
   } catch (error) {
