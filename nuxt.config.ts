@@ -50,13 +50,10 @@ export default defineNuxtConfig({
   // Nitro configuration - GitHub Pages static deployment
   nitro: {
     preset: 'github-pages',
-    experimental: {
-      watcher: false
-    },
     prerender: {
       crawlLinks: false,
-      routes: ['/landing'],
-      ignore: ['/']
+      routes: ['/landing', '/200.html', '/404.html'],
+      ignore: ['/', '/**']
     }
   },
 
