@@ -35,7 +35,7 @@ jobs:
       - name: Build with Nuxt
         run: npm run build
         env:
-          # Add your environment variables here if needed for build
+          # Public Firebase variables (client-side)
           NUXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NUXT_PUBLIC_FIREBASE_API_KEY }}
           NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
           NUXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NUXT_PUBLIC_FIREBASE_PROJECT_ID }}
@@ -43,6 +43,14 @@ jobs:
           NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
           NUXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NUXT_PUBLIC_FIREBASE_APP_ID }}
           NUXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{ secrets.NUXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
+          # Private Firebase variables (server-side)
+          FIREBASE_ADMIN_PROJECT_ID: ${{ secrets.FIREBASE_ADMIN_PROJECT_ID }}
+          FIREBASE_ADMIN_CLIENT_EMAIL: ${{ secrets.FIREBASE_ADMIN_CLIENT_EMAIL }}
+          FIREBASE_ADMIN_PRIVATE_KEY: ${{ secrets.FIREBASE_ADMIN_PRIVATE_KEY }}
+          # Optional app configuration
+          NUXT_PUBLIC_APP_VERSION: ${{ secrets.NUXT_PUBLIC_APP_VERSION }}
+          NUXT_PUBLIC_USE_FIREBASE_EMULATORS: ${{ secrets.NUXT_PUBLIC_USE_FIREBASE_EMULATORS }}
+          NUXT_PUBLIC_ENABLE_ONBOARDING_REDIRECT: ${{ secrets.NUXT_PUBLIC_ENABLE_ONBOARDING_REDIRECT }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
