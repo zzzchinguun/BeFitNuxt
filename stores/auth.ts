@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
   // State
   const user = ref<User | null>(null)
   const firebaseUser = ref<FirebaseUser | null>(null)
-  const loading = ref(!auth) // If no auth (static generation), set as not loading
+  const loading = ref(!auth) // If no auth (Firebase not available), set as not loading
   const isAuthenticated = computed(() => !!user.value)
 
   // Actions

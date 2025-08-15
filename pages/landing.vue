@@ -44,7 +44,14 @@ useHead({
 })
 
 const authStore = useAuthStore()
-const isAuthenticated = computed(() => authStore.isAuthenticated)
+const isAuthenticated = computed(() => {
+  try {
+    return authStore.isAuthenticated
+  } catch (error) {
+    // Firebase not available, treat as unauthenticated
+    return false
+  }
+})
 
 const mockStats = [
     { value: '1,572', label: 'Илчлэг', color: 'text-blue-600 dark:text-blue-400' },
@@ -69,8 +76,13 @@ const testimonials = [
 ]
 
 function handleGetStarted() {
-    if (isAuthenticated.value) navigateTo('/')
-    else navigateTo('/auth/register')
+    try {
+        if (isAuthenticated.value) navigateTo('/')
+        else navigateTo('/auth/register')
+    } catch (error) {
+        // Firebase not available, redirect to register
+        navigateTo('/auth/register')
+    }
 }
 </script>
 
