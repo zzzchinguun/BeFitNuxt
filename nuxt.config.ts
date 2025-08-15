@@ -52,8 +52,16 @@ export default defineNuxtConfig({
     preset: 'github-pages',
     prerender: {
       crawlLinks: false,
-      routes: ['/landing', '/200.html', '/404.html'],
-      ignore: ['/', '/**']
+      routes: ['/landing'],
+      ignore: ['/', '/auth/**', '/onboarding/**', '/meals/**', '/exercises/**'],
+      failOnError: false
+    },
+    routeRules: {
+      '/': { prerender: false },
+      '/auth/**': { prerender: false },
+      '/onboarding/**': { prerender: false },
+      '/meals/**': { prerender: false },
+      '/exercises/**': { prerender: false }
     }
   },
 
@@ -85,8 +93,7 @@ export default defineNuxtConfig({
   // Build configuration
   build: {
     transpile: ['vue-toastification']
-  }
-  ,
+  },
   vite: {
     server: {
       port: 3001,

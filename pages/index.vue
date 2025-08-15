@@ -155,8 +155,8 @@ definePageMeta({
   title: 'Dashboard'
 })
 
-// Skip during static generation
-if (process.server && !process.env.NUXT_PUBLIC_FIREBASE_API_KEY) {
+// Skip during static generation - throw error to prevent prerendering
+if (process.server && (!process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.env.NODE_ENV === 'production')) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Page not available during static generation'
