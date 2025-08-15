@@ -47,9 +47,8 @@ export default defineNuxtConfig({
   },
 
 
-  // Nitro configuration - GitHub Pages static deployment
+  // Nitro configuration - Universal deployment (works with Vercel, Netlify, GitHub Pages)
   nitro: {
-    preset: 'github-pages',
     prerender: {
       crawlLinks: false,
       routes: ['/landing'],
@@ -57,16 +56,14 @@ export default defineNuxtConfig({
       failOnError: false
     },
     routeRules: {
-      '/': { prerender: false },
-      '/auth/**': { prerender: false },
-      '/onboarding/**': { prerender: false },
-      '/meals/**': { prerender: false },
-      '/exercises/**': { prerender: false }
+      '/': { prerender: false, ssr: false },
+      '/auth/**': { prerender: false, ssr: false },
+      '/onboarding/**': { prerender: false, ssr: false },
+      '/meals/**': { prerender: false, ssr: false },
+      '/exercises/**': { prerender: false, ssr: false },
+      '/landing': { prerender: true, ssr: true }
     }
   },
-
-  // SSR configuration - disabled for static generation
-  ssr: false,
 
   // App configuration
   app: {

@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware((to) => {
-  // Skip middleware during static generation
-  if (process.server && !process.env.NUXT_PUBLIC_FIREBASE_API_KEY) {
+  // Skip middleware during static generation or when Firebase is not configured
+  if (process.server && (!process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.prerender)) {
     return
   }
   

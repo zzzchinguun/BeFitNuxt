@@ -155,8 +155,8 @@ definePageMeta({
   title: 'Dashboard'
 })
 
-// Skip Firebase operations during static generation
-const isStaticGeneration = process.server && (!process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.env.NODE_ENV === 'production')
+// Skip Firebase operations during static generation or prerendering
+const isStaticGeneration = process.server && (!process.env.NUXT_PUBLIC_FIREBASE_API_KEY || process.prerender)
 
 const authStore = useAuthStore()
 const mealsStore = useMealsStore()
