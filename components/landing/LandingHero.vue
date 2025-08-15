@@ -44,7 +44,7 @@
                     <UCarousel class="h-full" :items="screens" :ui="{ item: 'w-full h-full' }" arrows
                         :autoplay="{ delay: 3500 }" loop>
                         <template #default="{ item }">
-                            <NuxtImg :src="item.src" alt="App preview" class="w-full h-full object-cover" />
+                            <img :src="item.src" alt="App preview" class="w-full h-full object-cover" />
                         </template>
                     </UCarousel>
                 </div>
