@@ -1,0 +1,626 @@
+{
+  "app": {
+    "name": "BeFit",
+    "tagline": "Track your fitness journey"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register", 
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "signInWithGoogle": "Sign in with Google",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "createAccount": "Create Account"
+  },
+  "onboarding": {
+    "progress": {
+      "step": "Step",
+      "of": "of",
+      "saveExit": "Save & Exit"
+    },
+    "navigation": {
+      "next": "Next",
+      "previous": "Previous"
+    },
+    "welcome": {
+      "title": "Welcome to BeFit",
+      "subtitle": "Let's create your personalized fitness plan",
+      "getStarted": "Get Started",
+      "timeEstimate": "Takes about 5 minutes to complete",
+      "features": {
+        "calculations": {
+          "title": "Precise Calculations",
+          "description": "Science-based BMR, TDEE, and macro calculations tailored to your body"
+        },
+        "goals": {
+          "title": "Personalized Goals",
+          "description": "Cutting, bulking, or maintaining - we'll create the perfect plan for you"
+        },
+        "tracking": {
+          "title": "Easy Tracking",
+          "description": "Simple tools to track your meals, workouts, and progress over time"
+        }
+      }
+    },
+    "step2": {
+      "title": "Basic Information",
+      "description": "Tell us about yourself to calculate your metabolic needs",
+      "age": {
+        "label": "Age",
+        "placeholder": "25",
+        "help": "Used for accurate BMR calculation"
+      },
+      "height": {
+        "label": "Height",
+        "placeholder": "175",
+        "hint": "Choose your preferred unit"
+      },
+      "weight": {
+        "label": "Current Weight",
+        "placeholder": "70",
+        "hint": "Your current body weight"
+      },
+      "bmi": {
+        "label": "BMI",
+        "underweight": "Underweight",
+        "normal": "Normal",
+        "overweight": "Overweight",
+        "obese": "Obese"
+      }
+    },
+    "step3": {
+      "title": "Gender & Activity Level",
+      "description": "This helps us calculate your daily energy needs accurately",
+      "gender": {
+        "label": "Gender",
+        "male": "Male",
+        "female": "Female"
+      },
+      "activity": {
+        "label": "Activity Level",
+        "description": "Choose the option that best describes your typical week",
+        "examples": "Examples"
+      },
+      "preview": {
+        "title": "Your Metabolic Profile",
+        "bmr": "BMR (kcal/day)",
+        "tdee": "TDEE (kcal/day)",
+        "note": "These are your baseline calorie needs"
+      },
+      "validation": {
+        "genderRequired": "Please select your gender",
+        "activityRequired": "Please select your activity level"
+      }
+    },
+    "activity": {
+      "sedentary": {
+        "label": "Sedentary",
+        "description": "Little or no exercise, desk job",
+        "examples": "Office work, reading, watching TV"
+      },
+      "light": {
+        "label": "Lightly Active",
+        "description": "Light exercise 1-3 days/week",
+        "examples": "Walking, light yoga, casual cycling"
+      },
+      "moderate": {
+        "label": "Moderately Active",
+        "description": "Moderate exercise 3-5 days/week",
+        "examples": "Running, weight training, sports"
+      },
+      "very": {
+        "label": "Very Active",
+        "description": "Hard exercise 6-7 days/week",
+        "examples": "Daily workouts, intense training"
+      },
+      "extra": {
+        "label": "Extremely Active",
+        "description": "Physical job + exercise",
+        "examples": "Construction work, athlete training"
+      }
+    },
+    "step4": {
+      "title": "Body Fat Assessment",
+      "description": "This helps us create more accurate macro recommendations (optional)",
+      "selector": {
+        "label": "How would you like to estimate your body fat?",
+        "description": "Choose the method that works best for you"
+      },
+      "methods": {
+        "known": "I Know It",
+        "tape": "Tape Measure",
+        "visual": "Visual Estimate",
+        "unknown": "Skip This"
+      },
+      "known": {
+        "inputLabel": "Body Fat Percentage",
+        "placeholder": "15",
+        "range": "Valid range for {gender}: {min}%-{max}%"
+      },
+      "tape": {
+        "instructions": "Measure with a flexible tape measure for best accuracy",
+        "waist": "Waist (at navel)",
+        "neck": "Neck (below Adam's apple)",
+        "hip": "Hip (widest point)",
+        "estimated": "Estimated body fat"
+      },
+      "visual": {
+        "instructions": "Select the image that best matches your current physique",
+        "male": {
+          "athletic": "Athletic",
+          "fitness": "Fit",
+          "average": "Average",
+          "above": "Above Average",
+          "high": "High",
+          "obese": "Obese"
+        },
+        "female": {
+          "athletic": "Athletic", 
+          "fitness": "Fit",
+          "average": "Average",
+          "above": "Above Average",
+          "high": "High",
+          "obese": "Obese"
+        }
+      },
+      "unknown": {
+        "description": "We'll estimate based on your BMI",
+        "bmiBased": "BMI-based estimate",
+        "warning": "This method is less accurate"
+      },
+      "ranges": {
+        "title": "Body Fat Reference Ranges",
+        "male": {
+          "essential": "Essential",
+          "athletic": "Athletic",
+          "fitness": "Fitness",
+          "average": "Average",
+          "obese": "Obese"
+        },
+        "female": {
+          "essential": "Essential",
+          "athletic": "Athletic", 
+          "fitness": "Fitness",
+          "average": "Average",
+          "obese": "Obese"
+        }
+      },
+      "categories": {
+        "male": {
+          "essential": "Essential Fat",
+          "athletic": "Athletic",
+          "fitness": "Fitness",
+          "average": "Average",
+          "obese": "Obese"
+        },
+        "female": {
+          "essential": "Essential Fat",
+          "athletic": "Athletic",
+          "fitness": "Fitness", 
+          "average": "Average",
+          "obese": "Obese"
+        }
+      },
+      "warnings": {
+        "unknown": "This estimate may be less accurate. Consider using tape measurements for better results.",
+        "visual": "Visual estimates can vary. Consider professional measurement for precision."
+      },
+      "result": {
+        "title": "Your Estimated Body Fat"
+      },
+      "skip": "Skip body fat assessment"
+    },
+    "step5": {
+      "title": "Fitness Goal",
+      "description": "What do you want to achieve?",
+      "selector": {
+        "label": "Select Your Primary Goal",
+        "description": "This determines your calorie and macro targets"
+      },
+      "metrics": {
+        "title": "Your Current Metrics",
+        "bmr": "BMR",
+        "tdee": "TDEE",
+        "bodyFat": "Body Fat",
+        "leanMass": "Lean Mass"
+      },
+      "guidance": {
+        "focus": "Focus Areas",
+        "approach": "Approach",
+        "cut": {
+          "title": "Weight Loss Journey",
+          "description": "Reduce body fat while preserving muscle mass",
+          "focus": "Calorie deficit, high protein, strength training",
+          "approach": "Gradual, sustainable fat loss"
+        },
+        "bulk": {
+          "title": "Muscle Building Phase", 
+          "description": "Build muscle mass with controlled weight gain",
+          "focus": "Calorie surplus, progressive overload, recovery",
+          "approach": "Lean gains with minimal fat gain"
+        },
+        "maintain": {
+          "title": "Maintenance Phase",
+          "description": "Maintain current weight and body composition",
+          "focus": "Consistent intake, body recomposition",
+          "approach": "Stable calories, performance focus"
+        }
+      },
+      "validation": {
+        "goalRequired": "Please select your fitness goal"
+      }
+    },
+    "goal": {
+      "cut": {
+        "label": "Cut (Lose Weight)",
+        "description": "Reduce body fat while maintaining muscle mass",
+        "purpose": "Fat loss",
+        "timeline": "8-24 weeks",
+        "difficulty": "Moderate",
+        "strategy": "Create a moderate calorie deficit through diet and exercise",
+        "considerations": "May experience some fatigue and strength loss",
+        "expectations": "Expect 0.5-1kg weight loss per week"
+      },
+      "maintain": {
+        "label": "Maintain Weight",
+        "description": "Maintain current weight while improving body composition", 
+        "purpose": "Recomposition",
+        "timeline": "Ongoing",
+        "difficulty": "Easy",
+        "strategy": "Eat at maintenance calories with adequate protein",
+        "considerations": "Progress may be slower but more sustainable",
+        "expectations": "Gradual improvements in strength and body composition"
+      },
+      "bulk": {
+        "label": "Bulk (Gain Weight)",
+        "description": "Build muscle mass through controlled weight gain",
+        "purpose": "Muscle gain", 
+        "timeline": "12-24 weeks",
+        "difficulty": "Moderate",
+        "strategy": "Create a small calorie surplus with resistance training",
+        "considerations": "Some fat gain is normal and expected",
+        "expectations": "Expect 0.25-0.5kg weight gain per week"
+      },
+      "selectedInfo": {
+        "title": "About Your Goal",
+        "strategy": "Strategy",
+        "considerations": "Things to Consider",
+        "expectations": "What to Expect"
+      }
+    },
+    "step6": {
+      "title": "Target Weight & Pace",
+      "description": "Set your target weight and how quickly you want to achieve it",
+      "currentWeight": "Current Weight",
+      "validation": {
+        "targetRequired": "Please enter a target weight",
+        "paceRequired": "Please set a pace",
+        "direction": {
+          "title": "Goal Mismatch",
+          "cut": "For weight loss, target weight should be lower than current weight",
+          "bulk": "For weight gain, target weight should be higher than current weight"
+        },
+        "pace": {
+          "title": "Unsafe Pace",
+          "unsafe": "This pace may be unsafe for your goals"
+        },
+        "aggressive": {
+          "title": "Aggressive Pace",
+          "message": "This is quite aggressive. Consider a more moderate approach for better sustainability."
+        },
+        "good": {
+          "title": "Good Plan",
+          "message": "This looks like a sustainable and healthy approach to your goal."
+        }
+      }
+    },
+    "pace": {
+      "targetWeight": "Target Weight",
+      "targetWeightPlaceholder": "Enter your goal weight",
+      "rateLabel": "Weight Change Rate",
+      "kgPerWeek": "kg/week",
+      "slower": "Slower",
+      "faster": "Faster",
+      "gain": "Gain",
+      "lose": "Lose",
+      "presets": {
+        "conservative": "Conservative",
+        "moderate": "Moderate", 
+        "aggressive": "Aggressive",
+        "lean": "Lean Gains",
+        "fast": "Fast Gains",
+        "maintain": "Maintain"
+      },
+      "timeline": {
+        "title": "Estimated Timeline",
+        "weeks": "weeks",
+        "month": "Month",
+        "milestones": "Monthly Milestones"
+      },
+      "warnings": {
+        "unsafe": {
+          "title": "Unsafe Rate",
+          "message": "This rate is outside safe recommendations"
+        },
+        "aggressive": {
+          "title": "Aggressive Rate",
+          "message": "This may be difficult to sustain long-term"
+        },
+        "fastBulk": {
+          "title": "Fast Bulk",
+          "message": "Rapid weight gain may result in excess fat gain"
+        }
+      }
+    },
+    "step7": {
+      "title": "Timeline Preview",
+      "description": "Here's what your journey will look like",
+      "calories": {
+        "title": "Your Daily Calorie Plan",
+        "maintenance": "Maintenance",
+        "currentTDEE": "Current needs",
+        "cutting": "Cutting Target",
+        "bulking": "Bulking Target",
+        "maintaining": "Maintenance Target",
+        "deficit": "deficit",
+        "surplus": "surplus",
+        "noChange": "no change"
+      },
+      "milestones": {
+        "title": "Key Milestones",
+        "goal": "Goal Reached",
+        "week": "Week {week}"
+      },
+      "expectations": {
+        "title": "What to Expect",
+        "cut": {
+          "1": "Initial water weight loss in the first week",
+          "2": "Possible energy dips as your body adapts",
+          "3": "Steady fat loss with occasional plateaus"
+        },
+        "bulk": {
+          "1": "Initial weight gain from increased food and water",
+          "2": "Gradual strength and size increases", 
+          "3": "Some fat gain is normal and expected"
+        },
+        "maintain": {
+          "1": "Weight should remain relatively stable",
+          "2": "Focus on performance and body composition",
+          "3": "Gradual improvements over time"
+        }
+      }
+    },
+    "timeline": {
+      "title": "Your Journey Timeline",
+      "description": "Estimated progress based on your goals",
+      "weeks": "weeks",
+      "targetDate": "Target Date",
+      "progressChart": "Progress Chart", 
+      "monthlyProgress": "Monthly Breakdown",
+      "start": "Start",
+      "goal": "Goal",
+      "maintain": "Maintain",
+      "gain": "Gain",
+      "loss": "Loss",
+      "notes": {
+        "title": "Important Notes",
+        "estimation": "Timeline is an estimate - actual progress may vary",
+        "plateaus": "Expect occasional plateaus and fluctuations",
+        "consistency": "Consistency is more important than perfection"
+      }
+    },
+    "step8": {
+      "title": "Your Macro Plan",
+      "description": "Here are your personalized daily macro targets",
+      "finalizeMacros": "Finalize My Plan",
+      "explanation": {
+        "title": "Understanding Your Macros",
+        "sources": "Good Sources",
+        "protein": {
+          "title": "Protein",
+          "description": "Builds and repairs muscle tissue, keeps you full",
+          "sources": "Chicken, fish, eggs, legumes, Greek yogurt"
+        },
+        "carbs": {
+          "title": "Carbohydrates", 
+          "description": "Primary energy source for workouts and brain function",
+          "sources": "Rice, oats, fruits, vegetables, whole grains"
+        },
+        "fat": {
+          "title": "Healthy Fats",
+          "description": "Hormone production, vitamin absorption, satiety",
+          "sources": "Nuts, olive oil, avocado, fatty fish"
+        }
+      },
+      "tips": {
+        "title": "Success Tips",
+        "common": {
+          "1": "Track your intake for the first few weeks to learn portion sizes",
+          "2": "Focus on whole, minimally processed foods"
+        },
+        "cut": {
+          "1": "Prioritize protein to preserve muscle during weight loss",
+          "2": "Include fiber-rich foods to help with satiety"
+        },
+        "bulk": {
+          "1": "Spread calories throughout the day for better digestion",
+          "2": "Don't forget to increase training intensity"
+        },
+        "maintain": {
+          "1": "Listen to your hunger cues and adjust as needed",
+          "2": "Focus on performance and how you feel"
+        }
+      },
+      "advanced": {
+        "title": "Advanced Options",
+        "show": "Show Advanced Options",
+        "hide": "Hide Advanced Options",
+        "mealTiming": "Show meal timing suggestions",
+        "mealTimingHelp": "Displays recommended macro distribution across meals"
+      }
+    },
+    "macros": {
+      "title": "Your Daily Macro Targets",
+      "description": "Personalized recommendations based on your goals",
+      "dailyCalories": "Daily Calories",
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat",
+      "distribution": "Macro Distribution",
+      "surplus": "{amount} calorie surplus",
+      "deficit": "{amount} calorie deficit",
+      "adjust": {
+        "title": "Adjust Your Macros",
+        "reset": "Reset to Recommended",
+        "remaining": "remaining calories"
+      },
+      "recommendations": {
+        "title": "Additional Recommendations",
+        "water": "Daily Water",
+        "fiber": "Daily Fiber",
+        "perDay": "per day",
+        "minimum": "minimum"
+      },
+      "mealTiming": {
+        "title": "Suggested Meal Distribution",
+        "breakfast": "Breakfast",
+        "lunch": "Lunch", 
+        "dinner": "Dinner",
+        "snacks": "Snacks"
+      }
+    },
+    "summary": {
+      "title": "You're All Set!",
+      "subtitle": "Your personalized fitness plan is ready",
+      "profile": {
+        "title": "Personal Profile",
+        "age": "Age",
+        "years": "years",
+        "gender": "Gender", 
+        "height": "Height",
+        "weight": "Weight",
+        "activity": "Activity Level",
+        "bodyFat": "Body Fat"
+      },
+      "goal": {
+        "title": "Goal & Timeline",
+        "type": "Goal Type",
+        "target": "Target Weight",
+        "pace": "Rate",
+        "week": "week",
+        "timeline": "Timeline",
+        "weeks": "weeks"
+      },
+      "metabolic": {
+        "title": "Metabolic Data",
+        "bmr": "BMR",
+        "tdee": "TDEE",
+        "target": "Target Calories",
+        "kcal": "kcal/day",
+        "leanMass": "Lean Body Mass"
+      },
+      "macros": {
+        "title": "Daily Macro Plan",
+        "dailyCalories": "daily calories",
+        "protein": "Protein",
+        "carbs": "Carbs",
+        "fat": "Fat"
+      },
+      "actions": {
+        "complete": "Start My Journey",
+        "edit": "Make Changes",
+        "restart": "Start Over"
+      },
+      "completion": {
+        "success": "Plan saved successfully! Redirecting to dashboard...",
+        "error": "Failed to save plan. Please try again."
+      },
+      "version": "App Version",
+      "confirmRestart": "Are you sure you want to restart the onboarding process? All current data will be lost."
+    }
+  },
+  "dashboard": {
+    "todaysProgress": "Today's Progress",
+    "calories": "Calories",
+    "protein": "Protein",
+    "carbs": "Carbs",
+    "fat": "Fat",
+    "quickActions": "Quick Actions",
+    "logMeal": "Log Meal",
+    "logWorkout": "Log Workout",
+    "logWeight": "Log Weight"
+  },
+  "meals": {
+    "title": "Meals",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch", 
+    "dinner": "Dinner",
+    "snack": "Snack",
+    "addMeal": "Add Meal",
+    "searchFood": "Search Food",
+    "customFood": "Custom Food",
+    "scanBarcode": "Scan Barcode",
+    "quantity": "Quantity (grams)",
+    "servings": "Servings",
+    "nutritionFacts": "Nutrition Facts",
+    "per100g": "Per 100g",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "addToMeal": "Add to Meal"
+  },
+  "exercise": {
+    "workouts": "Workouts",
+    "exercises": "Exercises",
+    "logWorkout": "Log Workout",
+    "addExercise": "Add Exercise",
+    "sets": "Sets",
+    "reps": "Reps",
+    "weight": "Weight",
+    "duration": "Duration (minutes)",
+    "calories": "Calories",
+    "strength": "Strength",
+    "cardio": "Cardio"
+  },
+  "profile": {
+    "profile": "Profile",
+    "settings": "Settings",
+    "weightTracking": "Weight Tracking",
+    "notifications": "Notifications",
+    "language": "Language",
+    "units": "Units",
+    "macroGoals": "Macro Goals",
+    "updateProfile": "Update Profile"
+  },
+  "admin": {
+    "adminPanel": "Admin Panel",
+    "mealVerification": "Meal Verification",
+    "pendingReview": "Pending Review",
+    "approve": "Approve",
+    "reject": "Reject",
+    "edit": "Edit"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "grams": "grams",
+    "kg": "kg",
+    "lb": "lb",
+    "cm": "cm",
+    "in": "in"
+  }
+}

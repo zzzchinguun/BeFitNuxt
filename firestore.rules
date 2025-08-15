@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return request.auth.token.admin == true;
+    }
+    
+    function isValidUser() {
+      return isAuthenticated() && 
+             request.auth.token.email_verified == true;
+    }
+
+    // Users collection - users can read/write their own data
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) && isValidUser();
+      allow read: if isAdmin(); // Admins can read all user profiles
+    }
+
+    // Meals entries - users can read/write their own meals
+    match /meals/{userId}/entries/{entryId} {
+      allow read, write: if isOwner(userId) && isValidUser();
+    }
+
+    // Exercise logs - users can read/write their own exercises  
+    match /exercises/{userId}/logs/{logId} {
+      allow read, write: if isOwner(userId) && isValidUser();
+    }
+
+    // Weight logs - users can read/write their own weight data
+    match /weights/{userId}/logs/{logId} {
+      allow read, write: if isOwner(userId) && isValidUser();
+    }
+
+    // Verified meals - read access for all authenticated users, write for admins only
+    match /verified_meals/{mealId} {
+      allow read: if isValidUser();
+      allow write: if isAdmin();
+    }
+
+    // Unverified meals - users can create and read their own, admins can read/update all
+    match /unverified_meals/{mealId} {
+      allow create: if isValidUser() && 
+                   request.resource.data.submittedBy == request.auth.uid;
+      allow read: if isValidUser() && 
+                 (resource.data.submittedBy == request.auth.uid || isAdmin());
+      allow update: if isAdmin();
+    }
+
+    // Notifications - users can read/write their own notifications
+    match /notifications/{userId}/items/{notificationId} {
+      allow read, write: if isOwner(userId) && isValidUser();
+    }
+
+    // App configuration - read for all authenticated users, write for admins only
+    match /config/app {
+      allow read: if isValidUser();
+      allow write: if isAdmin();
+    }
+
+    // Admin-only collections
+    match /admin/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
