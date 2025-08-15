@@ -1,4 +1,9 @@
 export default defineNuxtRouteMiddleware((to) => {
+  // Skip middleware during static generation
+  if (process.server && !process.env.NUXT_PUBLIC_FIREBASE_API_KEY) {
+    return
+  }
+  
   const authStore = useAuthStore()
   const config = useRuntimeConfig()
   
