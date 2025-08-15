@@ -54,7 +54,8 @@ export default defineNuxtConfig({
       watcher: false
     },
     prerender: {
-      routes: ['/landing']
+      routes: ['/landing', '/auth/login', '/auth/register', '/auth/forgot-password'],
+      ignore: ['/']
     }
   },
 

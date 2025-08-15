@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeFit - Redirecting...</title>
+    <meta http-equiv="refresh" content="0;url=/landing">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #F2F2F6;
+            color: #0A0A0A;
+        }
+        .container {
+            text-align: center;
+        }
+        .spinner {
+            border: 3px solid #e3e3e3;
+            border-top: 3px solid #0584FF;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000000;
+                color: #F2F2F6;
+            }
+        }
+    </style>
+    <script>
+        // Immediate redirect
+        if (window.location.pathname === '/') {
+            window.location.replace('/landing');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <h2>Redirecting to BeFit...</h2>
+        <p>If you are not redirected automatically, <a href="/landing">click here</a></p>
+    </div>
+</body>
+</html>
