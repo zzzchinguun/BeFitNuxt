@@ -155,20 +155,50 @@ definePageMeta({
   title: 'Dashboard'
 })
 
+// Skip during static generation
+if (process.server && !process.env.NUXT_PUBLIC_FIREBASE_API_KEY) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page not available during static generation'
+  })
+}
+
 const authStore = useAuthStore()
 const mealsStore = useMealsStore()
 
 const openWeightModal = ref(false)
 
-// Load today's meals on mount
+// Load today's meals on mount with error handling
 onMounted(async () => {
-  await mealsStore.loadTodaysMeals()
+  try {
+    if (authStore.isAuthenticated) {
+      await mealsStore.loadTodaysMeals()
+    }
+  } catch (error) {
+    console.error('Error loading meals:', error)
+  }
 })
 
-// Computed properties
-const dailyMacros = computed(() => mealsStore.dailyMacros)
+// Computed properties with fallbacks
+const dailyMacros = computed(() => {
+  try {
+    return mealsStore.dailyMacros
+  } catch (error) {
+    console.error('Error computing daily macros:', error)
+    return {
+      consumed: { kcal: 0, protein: 0, carbs: 0, fat: 0 },
+      goals: { kcal: 2000, protein: 100, carbs: 250, fat: 67 },
+      percentages: { kcal: 0, protein: 0, carbs: 0, fat: 0 }
+    }
+  }
+})
 
 const recentMeals = computed(() => {
-  return mealsStore.todaysMeals.slice(-3) // Show last 3 meals
+  try {
+    return mealsStore.todaysMeals.slice(-3) // Show last 3 meals
+  } catch (error) {
+    console.error('Error computing recent meals:', error)
+    return []
+  }
 })
 </script>
