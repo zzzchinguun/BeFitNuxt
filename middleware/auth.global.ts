@@ -1,8 +1,13 @@
 export default defineNuxtRouteMiddleware((to) => {
+  // Skip middleware during static generation
+  if (process.server && !process.env.NUXT_PUBLIC_FIREBASE_API_KEY) {
+    return
+  }
+  
   const authStore = useAuthStore()
   
   // Pages that don't require authentication
-  const publicPages = ['/auth/login', '/auth/register', '/auth/forgot-password', '/landing']
+  const publicPages = ['/', '/auth/login', '/auth/register', '/auth/forgot-password', '/landing']
   
   // Wait for auth to initialize
   if (authStore.loading) {

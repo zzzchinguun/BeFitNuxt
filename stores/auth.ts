@@ -23,11 +23,13 @@ export const useAuthStore = defineStore('auth', () => {
   // State
   const user = ref<User | null>(null)
   const firebaseUser = ref<FirebaseUser | null>(null)
-  const loading = ref(true)
+  const loading = ref(!auth) // If no auth (static generation), set as not loading
   const isAuthenticated = computed(() => !!user.value)
 
   // Actions
   async function login(email: string, password: string) {
+    if (!auth) return { success: false, error: 'Firebase not initialized' }
+    
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
       await loadUserProfile(userCredential.user.uid)
@@ -39,6 +41,8 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function register(email: string, password: string, displayName?: string) {
+    if (!auth || !db) return { success: false, error: 'Firebase not initialized' }
+    
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password)
       
@@ -143,6 +147,11 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Initialize auth state listener
   function initializeAuth() {
+    if (!auth) {
+      loading.value = false
+      return Promise.resolve()
+    }
+    
     return new Promise<void>((resolve) => {
       const unsubscribe = onAuthStateChanged(auth, async (firebaseUserData) => {
         loading.value = true

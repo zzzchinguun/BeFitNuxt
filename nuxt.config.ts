@@ -52,6 +52,9 @@ export default defineNuxtConfig({
     preset: 'github-pages',
     experimental: {
       watcher: false
+    },
+    prerender: {
+      routes: ['/landing']
     }
   },
 
