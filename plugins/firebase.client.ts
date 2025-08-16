@@ -7,9 +7,16 @@ import { getMessaging, isSupported } from 'firebase/messaging'
 export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
   
-  // Check if Firebase config is available
-  if (!config.public.firebaseApiKey || !config.public.firebaseProjectId) {
-    console.warn('Firebase configuration is missing. Firebase features will be disabled.')
+  // Check if Firebase config is available and valid (not placeholder values)
+  if (!config.public.firebaseApiKey || 
+      !config.public.firebaseProjectId || 
+      config.public.firebaseApiKey === 'your-firebase-api-key' ||
+      config.public.firebaseProjectId === 'your-project-id' ||
+      config.public.firebaseApiKey === 'AIzaSyBwGFplI9_TD5f4rhAo4e1QwWuFtYmaLnk' || // Old example key
+      config.public.firebaseProjectId === 'befitauth' || // Old example project
+      config.public.firebaseApiKey.includes('XXXXXXXXXX') ||
+      config.public.firebaseApiKey.startsWith('your-')) {
+    console.warn('Firebase configuration is missing or using placeholder values. Firebase features will be disabled.')
     return {
       provide: {
         firebase: {
