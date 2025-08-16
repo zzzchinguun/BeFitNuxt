@@ -1,10 +1,18 @@
-import { initializeApp } from 'firebase/app'
-import { getAuth, connectAuthEmulator } from 'firebase/auth'
-import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'
-import { getStorage, connectStorageEmulator } from 'firebase/storage'
-import { getMessaging, isSupported } from 'firebase/messaging'
+import { initializeApp, type FirebaseApp } from 'firebase/app'
+import { getAuth, connectAuthEmulator, type Auth } from 'firebase/auth'
+import { getFirestore, connectFirestoreEmulator, type Firestore } from 'firebase/firestore'
+import { getStorage, connectStorageEmulator, type FirebaseStorage } from 'firebase/storage'
+import { getMessaging, isSupported, type Messaging } from 'firebase/messaging'
 
-export default defineNuxtPlugin(async () => {
+interface FirebaseServices {
+  app: FirebaseApp | null
+  auth: Auth | null
+  db: Firestore | null
+  storage: FirebaseStorage | null
+  messaging: Messaging | null
+}
+
+export default defineNuxtPlugin(async (): Promise<{ provide: { firebase: FirebaseServices } }> => {
   const config = useRuntimeConfig()
   
   // Check if Firebase config is available and valid (not placeholder values)
@@ -12,8 +20,6 @@ export default defineNuxtPlugin(async () => {
       !config.public.firebaseProjectId || 
       config.public.firebaseApiKey === 'your-firebase-api-key' ||
       config.public.firebaseProjectId === 'your-project-id' ||
-      config.public.firebaseApiKey === 'AIzaSyBwGFplI9_TD5f4rhAo4e1QwWuFtYmaLnk' || // Old example key
-      config.public.firebaseProjectId === 'befitauth' || // Old example project
       config.public.firebaseApiKey.includes('XXXXXXXXXX') ||
       config.public.firebaseApiKey.startsWith('your-')) {
     console.warn('Firebase configuration is missing or using placeholder values. Firebase features will be disabled.')
@@ -48,7 +54,7 @@ export default defineNuxtPlugin(async () => {
     const storage = getStorage(app)
 
     // Connect to emulators only when explicitly enabled
-    if (process.dev && config.public.useFirebaseEmulators) {
+    if (import.meta.dev && config.public.useFirebaseEmulators) {
       try {
         connectAuthEmulator(auth, 'http://localhost:9099')
         connectFirestoreEmulator(db, 'localhost', 8080)
@@ -60,8 +66,8 @@ export default defineNuxtPlugin(async () => {
     }
 
     // Initialize messaging if supported
-    let messaging = null
-    if (process.client && await isSupported()) {
+    let messaging: Messaging | null = null
+    if (import.meta.client && await isSupported()) {
       messaging = getMessaging(app)
     }
 

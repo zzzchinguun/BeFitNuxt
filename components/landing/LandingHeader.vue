@@ -30,13 +30,17 @@ const authStore = useAuthStore()
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 
 function scrollTo(selector) {
-    const el = document.querySelector(selector)
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (import.meta.client) {
+        const el = document.querySelector(selector)
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
 }
 
 const colorMode = useColorMode?.() // if @nuxtjs/color-mode exists
 const prefersDark = usePreferredDark?.() // from @vueuse/nuxt
 const isDark = computed(() => {
+    if (!import.meta.client) return false
+    
     const byClass = document.documentElement.classList.contains('dark')
     const byColorMode = colorMode && typeof colorMode.value === 'string' ? colorMode.value === 'dark' : false
     const byMedia = prefersDark?.value === true
