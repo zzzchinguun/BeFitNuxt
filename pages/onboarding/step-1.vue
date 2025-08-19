@@ -162,6 +162,6 @@ function handleNext() {
   })
 
   onboardingStore.nextStep()
-  navigateTo('/onboarding/step-2')
+  navigateTo('/onboarding/step-2-age-height-weight')
 }
 </script>

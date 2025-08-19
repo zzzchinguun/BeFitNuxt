@@ -32,15 +32,21 @@
           <div class="space-y-6">
             
             <!-- Personal Details Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-user" class="w-5 h-5 mr-2" />
                 Personal Details
+                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
               </h3>
               
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Age -->
-                <UFormGroup label="Age" name="age" :error="errors.age">
+                <UFormGroup name="age" :error="errors.age">
+                  <template #label>
+                    <div class="flex items-center">
+                      Age <span class="text-red-500 ml-1">*</span>
+                    </div>
+                  </template>
                   <UInput
                     v-model.number="formData.ageYears"
                     type="number"
@@ -49,21 +55,33 @@
                     required
                     placeholder="25"
                     size="lg"
+                    :class="{ 'border-red-300': !formData.ageYears }"
                   />
                 </UFormGroup>
 
                 <!-- Gender -->
-                <UFormGroup label="Gender" name="gender" :error="errors.gender">
+                <UFormGroup name="gender" :error="errors.gender">
+                  <template #label>
+                    <div class="flex items-center">
+                      Gender <span class="text-red-500 ml-1">*</span>
+                    </div>
+                  </template>
                   <USelect
                     v-model="formData.gender"
                     :options="genderOptions"
                     placeholder="Select gender"
                     size="lg"
+                    :class="{ 'border-red-300': !formData.gender }"
                   />
                 </UFormGroup>
 
                 <!-- Height -->
-                <UFormGroup label="Height" name="height" :error="errors.height">
+                <UFormGroup name="height" :error="errors.height">
+                  <template #label>
+                    <div class="flex items-center">
+                      Height <span class="text-red-500 ml-1">*</span>
+                    </div>
+                  </template>
                   <UnitInput
                     v-model="formData.height.value"
                     v-model:unit="formData.height.unit"
@@ -71,11 +89,17 @@
                     placeholder="175"
                     :min="120"
                     :max="250"
+                    :class="{ 'border-red-300': !formData.height.value }"
                   />
                 </UFormGroup>
 
                 <!-- Weight -->
-                <UFormGroup label="Weight" name="weight" :error="errors.weight">
+                <UFormGroup name="weight" :error="errors.weight">
+                  <template #label>
+                    <div class="flex items-center">
+                      Weight <span class="text-red-500 ml-1">*</span>
+                    </div>
+                  </template>
                   <UnitInput
                     v-model="formData.weight.value"
                     v-model:unit="formData.weight.unit"
@@ -84,6 +108,7 @@
                     :min="30"
                     :max="300"
                     :step="0.1"
+                    :class="{ 'border-red-300': !formData.weight.value }"
                   />
                 </UFormGroup>
               </div>
@@ -100,10 +125,11 @@
             </div>
 
             <!-- Activity Level Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-bolt" class="w-5 h-5 mr-2" />
                 Activity Level
+                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
               </h3>
               
               <ActivitySelector
@@ -134,10 +160,11 @@
           <div class="space-y-6">
             
             <!-- Goal Selection Card -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-target" class="w-5 h-5 mr-2" />
                 Fitness Goal
+                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
               </h3>
               
               <GoalSelector
@@ -314,6 +341,17 @@
           </div>
         </div>
 
+        <!-- Completion Hint -->
+        <div v-if="!isFormComplete" class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 text-center">
+          <div class="flex items-center justify-center text-amber-800 dark:text-amber-200">
+            <UIcon name="i-heroicons-information-circle" class="w-5 h-5 mr-2" />
+            <span class="font-medium">Complete all required fields to continue</span>
+          </div>
+          <div class="mt-2 text-sm text-amber-700 dark:text-amber-300">
+            Missing: <span v-if="!formData.gender">Gender</span><span v-if="!formData.gender && !formData.activity">, </span><span v-if="!formData.activity">Activity Level</span><span v-if="(!formData.gender || !formData.activity) && !formData.goalType">, </span><span v-if="!formData.goalType">Fitness Goal</span>
+          </div>
+        </div>
+
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6">
           <UButton
@@ -328,10 +366,11 @@
             :disabled="!isFormComplete"
             :loading="isLoading"
             size="lg"
-            class="px-8"
+            class="px-8 relative"
+            :class="isFormComplete ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 pulse' : 'bg-gray-400'"
           >
             <UIcon name="i-heroicons-check" class="w-5 h-5 mr-2" />
-            Complete Setup
+            {{ isFormComplete ? 'Complete Setup & Generate Meals!' : 'Complete Setup' }}
           </UButton>
           
           <UButton
@@ -784,13 +823,13 @@ async function handleSubmit() {
     
     if (result.success) {
       statusMessage.value = {
-        text: 'Setup completed successfully! Redirecting to dashboard...',
+        text: 'Setup completed successfully! Redirecting to meal generation...',
         class: 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200',
         icon: 'i-heroicons-check-circle'
       }
       
       setTimeout(() => {
-        navigateTo('/')
+        navigateTo('/meal-generation')
       }, 2000)
     } else {
       statusMessage.value = {
@@ -865,3 +904,24 @@ useHead({
   title: 'Simplified Onboarding - BeFit'
 })
 </script>
+
+<style scoped>
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Required field visual cues */
+.border-red-300 {
+  border-color: rgb(252 165 165) !important;
+  box-shadow: 0 0 0 1px rgb(252 165 165);
+}
+</style>

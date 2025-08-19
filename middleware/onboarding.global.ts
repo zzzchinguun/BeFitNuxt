@@ -37,8 +37,14 @@ export default defineNuxtRouteMiddleware((to) => {
     '/auth/login', 
     '/auth/register', 
     '/auth/forgot-password',
-    '/profile',
     ...onboardingPages
+  ]
+  
+  // Meal generation pages that don't need meal plan completion
+  const mealGenerationPages = [
+    '/meal-generation',
+    '/meal-generation/preview',
+    '/meal-generation/shopping-list'
   ]
   
   const user = authStore.user
@@ -48,6 +54,9 @@ export default defineNuxtRouteMiddleware((to) => {
     user?.onboarding?.completed === true ||
     (!!user?.macroGoals && (user.macroGoals.kcal > 0))
   
+  // Check if user has generated their first meal plan
+  const hasMealPlan = user?.mealPlanGenerated === true
+  
   // If redirects are disabled via config, skip
   if (config.public.enableOnboardingRedirect === false) {
     return
@@ -55,64 +64,40 @@ export default defineNuxtRouteMiddleware((to) => {
 
   // If user hasn't completed onboarding and trying to access a protected page
   if (!hasCompletedOnboarding && !exemptPages.some(page => to.path.startsWith(page))) {
-    // Determine where to redirect based on current progress
-    const onboardingStore = useOnboardingStore()
-    onboardingStore.loadExistingOnboarding()
-    
-    const currentStep = onboardingStore.currentStep
-    let redirectPath = '/onboarding/step-1-welcome'
-    
-    // Map current step to new route structure
-    switch (currentStep) {
-      case 1:
-        redirectPath = '/onboarding/step-1-welcome'
-        break
-      case 2:
-        redirectPath = '/onboarding/step-2-age-height-weight'
-        break
-      case 3:
-        redirectPath = '/onboarding/step-3-gender-activity'
-        break
-      case 4:
-        redirectPath = '/onboarding/step-4-body-fat'
-        break
-      case 5:
-        redirectPath = '/onboarding/step-5-goal'
-        break
-      case 6:
-        redirectPath = '/onboarding/step-6-goal-weight-and-pace'
-        break
-      case 7:
-        redirectPath = '/onboarding/step-7-timeline-preview'
-        break
-      case 8:
-        redirectPath = '/onboarding/step-8-macros'
-        break
-      case 9:
-        redirectPath = '/onboarding/summary'
-        break
-      default:
-        redirectPath = '/onboarding/step-1-welcome'
-    }
-    
-    return navigateTo(redirectPath)
+    // Redirect to simplified onboarding instead of step-by-step
+    return navigateTo('/onboarding/simplified')
+  }
+  
+  // If user has completed onboarding but hasn't generated a meal plan
+  if (hasCompletedOnboarding && !hasMealPlan && !mealGenerationPages.some(page => to.path.startsWith(page)) && !exemptPages.some(page => to.path.startsWith(page))) {
+    return navigateTo('/meal-generation')
   }
   
   // If user has completed onboarding and trying to access onboarding pages
   if (hasCompletedOnboarding && to.path.startsWith('/onboarding')) {
-    return navigateTo('/')
+    // If they have a meal plan, go to dashboard, otherwise meal generation
+    return navigateTo(hasMealPlan ? '/' : '/meal-generation')
   }
   
-  // Handle legacy onboarding routes - redirect to new structure
-  const legacyRouteMap: Record<string, string> = {
-    '/onboarding/step-1': '/onboarding/step-1-welcome',
-    '/onboarding/step-2': '/onboarding/step-2-age-height-weight',
-    '/onboarding/step-3': '/onboarding/step-3-gender-activity',
-    '/onboarding/step-4': '/onboarding/step-4-body-fat',
-    '/onboarding/step-5': '/onboarding/step-5-goal'
-  }
+  // Handle legacy onboarding routes - redirect to simplified onboarding
+  const legacyRoutes = [
+    '/onboarding/step-1',
+    '/onboarding/step-2', 
+    '/onboarding/step-3',
+    '/onboarding/step-4',
+    '/onboarding/step-5',
+    '/onboarding/step-1-welcome',
+    '/onboarding/step-2-age-height-weight',
+    '/onboarding/step-3-gender-activity',
+    '/onboarding/step-4-body-fat',
+    '/onboarding/step-5-goal',
+    '/onboarding/step-6-goal-weight-and-pace',
+    '/onboarding/step-7-timeline-preview',
+    '/onboarding/step-8-macros',
+    '/onboarding/summary'
+  ]
   
-  if (legacyRouteMap[to.path]) {
-    return navigateTo(legacyRouteMap[to.path])
+  if (legacyRoutes.includes(to.path)) {
+    return navigateTo('/onboarding/simplified')
   }
 })

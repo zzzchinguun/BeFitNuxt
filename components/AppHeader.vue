@@ -1,5 +1,6 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50">
+  <header
+    class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50">
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <!-- Logo/Title -->
@@ -11,26 +12,12 @@
 
         <!-- User menu -->
         <div class="flex items-center space-x-4">
-          <!-- Notifications -->
-          <UButton
-            variant="ghost"
-            icon="i-heroicons-bell"
-            @click="navigateTo('/profile/notifications')"
-          />
-
           <!-- User dropdown -->
           <UDropdown :items="userMenuItems">
-            <UButton
-              variant="ghost"
-              :icon="authStore.user?.photoURL ? undefined : 'i-heroicons-user-circle'"
-              class="relative"
-            >
-              <img
-                v-if="authStore.user?.photoURL"
-                :src="authStore.user.photoURL"
-                :alt="authStore.user.displayName || 'User'"
-                class="w-6 h-6 rounded-full"
-              />
+            <UButton variant="ghost" :icon="authStore.user?.photoURL ? undefined : 'i-heroicons-user-circle'"
+              class="relative">
+              <img v-if="authStore.user?.photoURL" :src="authStore.user.photoURL"
+                :alt="authStore.user.displayName || 'User'" class="w-6 h-6 rounded-full" />
             </UButton>
           </UDropdown>
         </div>
@@ -48,15 +35,6 @@ const userMenuItems = computed(() => [
     label: authStore.user?.displayName || authStore.user?.email || 'User',
     slot: 'account',
     disabled: true
-  }],
-  [{
-    label: 'Profile',
-    icon: 'i-heroicons-user',
-    click: () => navigateTo('/profile')
-  }, {
-    label: 'Settings',
-    icon: 'i-heroicons-cog-6-tooth',
-    click: () => navigateTo('/profile')
   }],
   ...(authStore.user?.role === 'admin' ? [[{
     label: 'Admin Panel',

@@ -317,9 +317,9 @@ async function handleComplete() {
         icon: 'i-heroicons-check-circle'
       }
       
-      // Redirect to dashboard after a short delay
+      // Redirect to meal generation after a short delay
       setTimeout(() => {
-        navigateTo('/')
+        navigateTo('/meal-generation')
       }, 2000)
     } else {
       completionMessage.value = {

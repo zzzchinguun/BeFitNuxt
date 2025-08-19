@@ -13,6 +13,7 @@ export interface User {
   }
   onboarding?: OnboardingData
   macroGoals: MacroGoals
+  mealPlanGenerated?: boolean // Track if user has generated their first meal plan
   createdAt: Timestamp
   updatedAt: Timestamp
 }
@@ -245,5 +246,111 @@ export interface DailyMacros {
     protein: number
     carbs: number
     fat: number
+  }
+}
+
+// ===== MEAL GENERATION TYPES =====
+
+export interface GeneratedMeal {
+  id: string
+  name: string
+  category: 'breakfast' | 'lunch' | 'dinner' | 'snack'
+  ingredients: MealIngredient[]
+  instructions: string[]
+  macros: MacroGoals
+  servingSize: number
+  imageUrl?: string
+  estimatedTime?: number // cooking time in minutes
+  difficulty?: 'easy' | 'medium' | 'hard'
+  source: 'database' | 'custom'
+}
+
+export interface MealIngredient {
+  id: string
+  name: string
+  amount: number
+  unit: string
+  category: 'protein' | 'vegetables' | 'carbs' | 'dairy' | 'fats' | 'spices' | 'other'
+  imageUrl?: string
+  essential: boolean // true if critical for the recipe
+}
+
+export interface MealPlan {
+  id: string
+  userId: string
+  targetMacros: MacroGoals
+  meals: GeneratedMeal[]
+  totalMacros: MacroGoals
+  macroAccuracy: number // percentage of how close we got to target macros
+  generatedAt: Timestamp
+  preferences?: MealPreferences
+  status: 'active' | 'archived' | 'draft'
+}
+
+export interface MealPreferences {
+  dietaryRestrictions?: string[]
+  allergies?: string[]
+  dislikedIngredients?: string[]
+  preferredCuisines?: string[]
+  maxCookingTime?: number
+  difficultyLevel?: 'easy' | 'medium' | 'hard' | 'any'
+}
+
+export interface ShoppingList {
+  id: string
+  userId: string
+  mealPlanId: string
+  items: ShoppingListItem[]
+  totalItems: number
+  estimatedCost?: number
+  createdAt: Timestamp
+  completed: boolean
+}
+
+export interface ShoppingListItem {
+  id: string
+  name: string
+  amount: number
+  unit: string
+  category: 'protein' | 'vegetables' | 'carbs' | 'dairy' | 'fats' | 'spices' | 'other'
+  price?: number
+  checked: boolean
+  imageUrl?: string
+  notes?: string
+}
+
+export interface MealGenerationRequest {
+  targetMacros: MacroGoals
+  preferences?: MealPreferences
+  excludeMeals?: string[] // IDs of meals to exclude
+  mealDistribution?: {
+    breakfast: number // percentage of daily calories
+    lunch: number
+    dinner: number
+    snacks: number
+  }
+}
+
+export interface MealGenerationResult {
+  success: boolean
+  mealPlan?: MealPlan
+  shoppingList?: ShoppingList
+  warnings?: string[]
+  errors?: string[]
+  accuracy: number
+}
+
+// Analytics and tracking
+export interface MealGenerationHistory {
+  id: string
+  userId: string
+  requestedAt: Timestamp
+  request: MealGenerationRequest
+  result: MealGenerationResult
+  userFeedback?: {
+    rating: number
+    liked: boolean
+    regeneratedMeals: string[]
+    comments?: string
   }
 }

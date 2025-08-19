@@ -1,6 +1,7 @@
 <template>
     <div>
         <LandingHero :mock-stats="mockStats" @get-started="handleGetStarted" />
+        <LandingIngredientMarquee />
         <LandingHowItWorks />
         <LandingFeatures :features="detailedFeatures" />
         <LandingTestimonials :items="testimonials" />
@@ -27,6 +28,7 @@ import { computed } from 'vue'
 import LandingHero from '~/components/landing/LandingHero.vue'
 import LandingHowItWorks from '~/components/landing/LandingHowItWorks.vue'
 import LandingFeatures from '~/components/landing/LandingFeatures.vue'
+import LandingIngredientMarquee from '~/components/landing/LandingIngredientMarquee.vue'
 import LandingTestimonials from '~/components/landing/LandingTestimonials.vue'
 
 definePageMeta({

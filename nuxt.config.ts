@@ -84,7 +84,7 @@ export default defineNuxtConfig({
 
   // Image optimization
   image: {
-    domains: ['firebasestorage.googleapis.com']
+    domains: ['firebasestorage.googleapis.com', 'cdn.emartmall.mn']
   },
 
   // Build configuration
