@@ -61,7 +61,8 @@ const { data, error } = await useFetch<{ count: number; items: IngredientItem[] 
   { 
     query: { popular: 'true', limit: '60', onlyWithImage: 'true' },
     server: false, // Client-side only to avoid SSR issues
-    default: () => ({ count: 0, items: [] })
+    default: () => ({ count: 0, items: [] }),
+    lazy: true // Load lazily to prevent SSR issues
   }
 )
 

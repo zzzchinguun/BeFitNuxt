@@ -61,18 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue'
-
-onMounted(() => {
-  nextTick(() => {
-    const reveals = document.querySelectorAll('.reveal, .reveal-delay')
-    reveals.forEach((el, index) => {
-      setTimeout(() => {
-        el.classList.add('reveal-visible')
-      }, index * 200)
-    })
-  })
-})
+// Animations handled by useReveal composable in layout
 </script>
 
 <style scoped>
