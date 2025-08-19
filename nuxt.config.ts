@@ -63,7 +63,13 @@ export default defineNuxtConfig({
       '/exercises/**': { prerender: false, ssr: false },
       '/landing': { prerender: true, ssr: true },
       '/api/**': { prerender: false, ssr: false }
-    }
+    },
+    publicAssets: [
+      {
+        dir: 'public',
+        maxAge: 60 * 60 * 24 * 7 // 7 days
+      }
+    ]
   },
 
   // App configuration
