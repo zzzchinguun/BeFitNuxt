@@ -1,10 +1,10 @@
 <template>
     <div>
         <LandingHero :mock-stats="mockStats" @get-started="handleGetStarted" />
+        <LandingPoweredBy />
         <LandingIngredientMarquee />
         <LandingHowItWorks />
         <LandingFeatures :features="detailedFeatures" />
-        <LandingPoweredBy />
         <LandingTestimonials :items="testimonials" />
         <section class="relative overflow-hidden" style="background-color: var(--color-bg)">
             <div class="cta-bg" aria-hidden="true"></div>
