@@ -52,7 +52,7 @@ export default defineNuxtRouteMiddleware((to) => {
   // Enhanced onboarding completion check
   const hasCompletedOnboarding = 
     user?.onboarding?.completed === true ||
-    (!!user?.macroGoals && (user.macroGoals.kcal > 0))
+    (!!user?.macroGoals && (user.macroGoals.kcal > 0 && user.macroGoals.proteinG > 0))
   
   // Check if user has generated their first meal plan
   const hasMealPlan = user?.mealPlanGenerated === true

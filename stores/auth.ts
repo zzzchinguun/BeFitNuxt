@@ -62,10 +62,10 @@ export const useAuthStore = defineStore('auth', () => {
           height: 'cm'
         },
         macroGoals: {
-          kcal: 2000,
-          protein: 100,
-          carbs: 250,
-          fat: 67
+          kcal: 0,
+          protein: 0,
+          carbs: 0,
+          fat: 0
         },
         createdAt: serverTimestamp() as any,
         updatedAt: serverTimestamp() as any
