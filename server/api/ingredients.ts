@@ -67,7 +67,7 @@ function normalizeImageUrl(url: string): string {
 }
 
 async function loadIngredientsFromCsv(): Promise<IngredientItem[]> {
-  const csvPath = join(process.cwd(), 'Untitled spreadsheet - Sheet1.csv')
+  const csvPath = join(process.cwd(), 'public', 'ingredients.csv')
   const csvContent = await readFile(csvPath, 'utf8')
 
   const parsed = Papa.parse<IngredientCsvRow>(csvContent, {

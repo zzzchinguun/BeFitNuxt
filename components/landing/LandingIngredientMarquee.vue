@@ -1,5 +1,5 @@
 <template>
-    <section class="py-10 md:py-14" style="background-color: var(--color-bg)">
+    <section v-if="items.length > 0" class="py-10 md:py-14" style="background-color: var(--color-bg)">
         <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-6 reveal">
                 Танд санал болгох орц, хүнснүүд
@@ -20,9 +20,12 @@
 <script setup lang="ts">
 import type { IngredientItem } from '~/server/api/ingredients'
 
-const { data } = await useFetch<{ count: number; items: IngredientItem[] }>(
+const { data, error } = await useFetch<{ count: number; items: IngredientItem[] }>(
   '/api/ingredients',
-  { query: { popular: 'true', limit: '60', onlyWithImage: 'true' } }
+  { 
+    query: { popular: 'true', limit: '60', onlyWithImage: 'true' },
+    server: false // Client-side only to avoid SSR issues
+  }
 )
 
 const items = computed(() => data.value?.items ?? [])

@@ -61,7 +61,8 @@ export default defineNuxtConfig({
       '/onboarding/**': { prerender: false, ssr: false },
       '/meals/**': { prerender: false, ssr: false },
       '/exercises/**': { prerender: false, ssr: false },
-      '/landing': { prerender: true, ssr: true }
+      '/landing': { prerender: true, ssr: true },
+      '/api/**': { prerender: false, ssr: false }
     }
   },
 
