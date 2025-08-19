@@ -48,15 +48,19 @@
                 <UIcon name="i-heroicons-x-mark" class="w-5 h-5" />
               </button>
               
-              <!-- Animated GWG logo/icon -->
+              <!-- Google logo and branding -->
               <div class="flex justify-center mb-6">
                 <div class="relative">
-                  <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-4 logo-bounce">
-                    <UIcon name="i-heroicons-sparkles" class="w-10 h-10 text-white animate-pulse" />
+                  <!-- Google-style colorful logo -->
+                  <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 logo-bounce shadow-lg border-2 border-gray-100">
+                    <div class="text-2xl font-bold">
+                      <span class="text-blue-500">G</span><span class="text-red-500">o</span><span class="text-yellow-500">o</span><span class="text-blue-500">g</span><span class="text-green-500">l</span><span class="text-red-500">e</span>
+                    </div>
                   </div>
-                  <!-- Animated rings -->
-                  <div class="absolute inset-0 rounded-full border-2 border-purple-300 animate-ping"></div>
-                  <div class="absolute inset-2 rounded-full border-2 border-pink-300 animate-ping animation-delay-1000"></div>
+                  <!-- Animated rings with Google colors -->
+                  <div class="absolute inset-0 rounded-full border-2 border-blue-300 animate-ping"></div>
+                  <div class="absolute inset-2 rounded-full border-2 border-red-300 animate-ping animation-delay-1000"></div>
+                  <div class="absolute inset-4 rounded-full border-2 border-yellow-300 animate-ping animation-delay-2000"></div>
                 </div>
               </div>
               
@@ -66,20 +70,26 @@
                   Тавтай морилно уу! 🎉
                 </h2>
                 
-                <div class="text-lg font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
-                  GWG Оролцогчид 
+                <div class="text-lg font-semibold mb-3">
+                  <span class="bg-gradient-to-r from-blue-600 via-red-500 via-yellow-500 via-green-500 to-red-600 bg-clip-text text-transparent">
+                    Grow with Google
+                  </span>
+                  <span class="text-gray-700 dark:text-gray-300"> оролцогчид</span>
                 </div>
                 
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed fade-in-text">
-                  Girls Who Go хөтөлбөрийн хүрээнд бид танд <strong>BeFit</strong>-г танилцуулж байна. 
-                  Хиймэл оюун ухаанаар дэмжигдсэн эрүүл амьдралын туслах таны шинэ найз!
+                  Grow with Google хөтөлбөрийн хүрээнд бид танд <strong>BeFit</strong>-г танилцуулж байна. 
+                  Google-ийн дэмжлэгтэй хиймэл оюун ухаанаар ажилладаг эрүүл амьдралын туслах!
                 </p>
                 
-                <div class="mt-6 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl">
+                <div class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-2xl border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center mb-2">
+                    <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Powered by Google AI</div>
+                  </div>
                   <p class="text-sm text-gray-700 dark:text-gray-300">
-                    ✨ Хувийн хоолны төлөвлөгөө<br>
-                    🎯 Ухаалаг макро тооцоо<br>
-                    📱 Хялбар дасгал хяналт
+                    🤖 Хиймэл оюун ухаанаар дэмжигдсэн хувийн хоолны төлөвлөгөө<br>
+                    📊 Ухаалаг макро тооцоо ба шинжилгээ<br>
+                    📱 Хялбар дасгал хяналт ба ахиц хянах
                   </p>
                 </div>
               </div>
@@ -89,10 +99,10 @@
                 <UButton
                   @click="startJourney"
                   size="lg"
-                  class="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  class="flex-1 bg-gradient-to-r from-blue-500 via-green-500 to-blue-600 hover:from-blue-600 hover:via-green-600 hover:to-blue-700 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
                   <UIcon name="i-heroicons-rocket-launch" class="w-5 h-5 mr-2" />
-                  Эхлээрэй
+                  Google-тэй эхлээрэй
                 </UButton>
                 
                 <UButton
@@ -120,7 +130,7 @@ const hasSeenWelcome = ref(false)
 
 onMounted(async () => {
   // Check if user has seen the welcome before
-  const seen = localStorage.getItem('gwg-welcome-seen')
+  const seen = localStorage.getItem('grow-with-google-welcome-seen')
   if (seen) {
     hasSeenWelcome.value = true
     return
@@ -136,7 +146,7 @@ onMounted(async () => {
 function closeModal() {
   isVisible.value = false
   // Mark as seen so it doesn't show again
-  localStorage.setItem('gwg-welcome-seen', 'true')
+  localStorage.setItem('grow-with-google-welcome-seen', 'true')
   hasSeenWelcome.value = true
 }
 
@@ -291,9 +301,13 @@ onUnmounted(() => {
   }
 }
 
-/* Animation delay utility */
+/* Animation delay utilities */
 .animation-delay-1000 {
   animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
 }
 
 /* Accessibility: Reduce motion for users who prefer it */

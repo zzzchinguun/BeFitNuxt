@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!-- GWG Welcome Modal -->
-        <GWGWelcomeModal />
+        <!-- Grow with Google Welcome Modal -->
+        <GrowWithGoogleModal />
         
         <LandingHero :mock-stats="mockStats" @get-started="handleGetStarted" />
         <LandingPoweredBy />
@@ -35,7 +35,7 @@ import LandingFeatures from '~/components/landing/LandingFeatures.vue'
 import LandingIngredientMarquee from '~/components/landing/LandingIngredientMarquee.vue'
 import LandingPoweredBy from '~/components/landing/LandingPoweredBy.vue'
 import LandingTestimonials from '~/components/landing/LandingTestimonials.vue'
-import GWGWelcomeModal from '~/components/landing/GWGWelcomeModal.vue'
+import GrowWithGoogleModal from '~/components/landing/GrowWithGoogleModal.vue'
 
 definePageMeta({
     layout: 'landing'
