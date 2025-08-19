@@ -209,7 +209,7 @@ async function handleRegister() {
     
     if (result.success) {
       $toast.success('Бүртгэл амжилттай үүслээ!')
-      await navigateTo('/onboarding/step-1')
+      await navigateTo('/onboarding/simplified')
     } else {
       $toast.error(result.error || 'Бүртгэл үүсгэхэд алдаа гарлаа')
     }

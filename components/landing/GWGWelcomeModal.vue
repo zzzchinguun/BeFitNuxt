@@ -70,71 +70,64 @@
 
                 <p class="text-gray-600 dark:text-gray-300 leading-relaxed fade-in-text">
                   Grow with Google хөтөлбөрийн хүрээнд бид танд <strong>BeFit</strong>-г танилцуулж байна.
-                  Google-ийн дэмжлэгтэй state of the art Gemini models болоод бүрэн firebase firestore датабааз дээр суурилан ажилладаг эрүүл амьдралын туслах!
+                  Google-ийн дэмжлэгтэй state of the art Gemini models болоод бүрэн firebase firestore датабааз дээр
+                  суурилан ажилладаг эрүүл амьдралын туслах!
                 </p>
 
-                                <div
-                   class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-2xl border border-gray-200 dark:border-gray-700">
-                   <div class="flex items-center mb-2">
-                     <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Powered
-                       by NexMind</div>
-                   </div>
-                   <p class="text-sm text-gray-700 dark:text-gray-300">
-                     🤖 Хиймэл оюун ухаанаар дэмжигдсэн хувийн хоолны төлөвлөгөө<br>
-                     📊 Ухаалаг макро тооцоо ба шинжилгээ<br>
-                     📱 Хялбар дасгал хяналт ба ахиц хянах
-                   </p>
-                 </div>
+                <div
+                  class="mt-6 p-4 bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 rounded-2xl border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center mb-2">
+                    <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Powered
+                      by NexMind</div>
+                  </div>
+                  <p class="text-sm text-gray-700 dark:text-gray-300">
+                    🤖 Хиймэл оюун ухаанаар дэмжигдсэн хувийн хоолны төлөвлөгөө<br>
+                    📊 Ухаалаг макро тооцоо ба шинжилгээ<br>
+                    📱 Хялбар дасгал хяналт ба ахиц хянах
+                  </p>
+                </div>
 
-                 <!-- Color Mode Selector -->
-                 <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700">
-                   <div class="flex items-center justify-between mb-3">
-                     <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                       🎨 Харагдах байдлаа сонгоорой
-                     </div>
-                   </div>
-                   
-                   <div class="grid grid-cols-3 gap-2">
-                     <button
-                       @click="setColorMode('light')"
-                       :class="[
-                         'flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200',
-                         colorMode.value === 'light' 
-                           ? 'border-blue-500 bg-blue-50 shadow-md' 
-                           : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                       ]"
-                     >
-                       <UIcon name="i-heroicons-sun" class="w-6 h-6 text-yellow-500 mb-1" />
-                       <span class="text-xs font-medium text-gray-700">Цагаан</span>
-                     </button>
-                     
-                     <button
-                       @click="setColorMode('dark')"
-                       :class="[
-                         'flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200',
-                         colorMode.value === 'dark' 
-                           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md' 
-                           : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
-                       ]"
-                     >
-                       <UIcon name="i-heroicons-moon" class="w-6 h-6 text-blue-400 mb-1" />
-                       <span class="text-xs font-medium text-gray-700 dark:text-gray-300">Хар</span>
-                     </button>
-                     
-                     <button
-                       @click="setColorMode('system')"
-                       :class="[
-                         'flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200',
-                         colorMode.value === 'system' 
-                           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md' 
-                           : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
-                       ]"
-                     >
-                       <UIcon name="i-heroicons-computer-desktop" class="w-6 h-6 text-gray-500 mb-1" />
-                       <span class="text-xs font-medium text-gray-700 dark:text-gray-300">Авто</span>
-                     </button>
-                   </div>
-                 </div>
+                <!-- Color Mode Selector -->
+                <div
+                  class="mt-6 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      🎨 Харагдах байдлаа сонгоорой
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-2">
+                    <button @click="setColorMode('light')" :class="[
+                      'flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200',
+                      colorMode.value === 'light'
+                        ? 'border-blue-500 bg-blue-50 shadow-md'
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    ]">
+                      <UIcon name="i-heroicons-sun" class="w-6 h-6 text-yellow-500 mb-1" />
+                      <span class="text-xs font-medium text-gray-700">Цагаан</span>
+                    </button>
+
+                    <button @click="setColorMode('dark')" :class="[
+                      'flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200',
+                      colorMode.value === 'dark'
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md'
+                        : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    ]">
+                      <UIcon name="i-heroicons-moon" class="w-6 h-6 text-blue-400 mb-1" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">Хар</span>
+                    </button>
+
+                    <button @click="setColorMode('system')" :class="[
+                      'flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-200',
+                      colorMode.value === 'system'
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-md'
+                        : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700'
+                    ]">
+                      <UIcon name="i-heroicons-computer-desktop" class="w-6 h-6 text-gray-500 mb-1" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">Авто</span>
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <!-- Action buttons -->
