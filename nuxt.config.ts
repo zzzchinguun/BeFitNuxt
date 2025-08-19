@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxt/eslint',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@vercel/analytics/nuxt'
   ],
 
   css: ['~/assets/css/main.css'],

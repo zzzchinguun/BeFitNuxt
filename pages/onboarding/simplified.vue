@@ -14,10 +14,8 @@
       <!-- Progress indicator -->
       <div class="mb-8">
         <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-          <div 
-            class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500 ease-out"
-            :style="{ width: `${completionPercentage}%` }"
-          />
+          <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500 ease-out"
+            :style="{ width: `${completionPercentage}%` }" />
         </div>
         <div class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
           {{ completionPercentage }}% бөглөгдсөн
@@ -27,10 +25,10 @@
       <form @submit.prevent="handleSubmit" class="space-y-8">
         <!-- Main Grid Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
+
           <!-- Left Column: Basic Information -->
           <div class="space-y-6">
-            
+
             <!-- Personal Details Card -->
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -38,7 +36,7 @@
                 Хувийн мэдээлэл
                 <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Заавал</span>
               </h3>
-              
+
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Age -->
                 <UFormGroup name="age" :error="errors.age">
@@ -47,16 +45,8 @@
                       Нас <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
-                  <UInput
-                    v-model.number="formData.ageYears"
-                    type="number"
-                    min="13"
-                    max="100"
-                    required
-                    placeholder="25"
-                    size="lg"
-                    :class="{ 'border-red-300': !formData.ageYears }"
-                  />
+                  <UInput v-model.number="formData.ageYears" type="number" min="13" max="100" required placeholder="25"
+                    size="lg" :class="{ 'border-red-300': !formData.ageYears }" />
                 </UFormGroup>
 
                 <!-- Gender -->
@@ -66,15 +56,8 @@
                       Хүйс <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
-                  <USelect
-                    v-model="formData.gender"
-                    :options="genderOptions"
-                    placeholder="Хүйс сонгох"
-                    size="lg"
-                    :class="{ 'border-red-300': !formData.gender }"
-                    value-attribute="value"
-                    option-attribute="label"
-                  />
+                  <USelect v-model="formData.gender" :options="genderOptions" placeholder="Хүйс сонгох" size="lg"
+                    :class="{ 'border-red-300': !formData.gender }" value-attribute="value" option-attribute="label" />
                 </UFormGroup>
 
                 <!-- Height -->
@@ -84,15 +67,9 @@
                       Өндөр <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
-                  <UnitInput
-                    v-model="formData.height.value"
-                    v-model:unit="formData.height.unit"
-                    :unit-options="heightUnits"
-                    placeholder="175"
-                    :min="120"
-                    :max="250"
-                    :class="{ 'border-red-300': !formData.height.value }"
-                  />
+                  <UnitInput v-model="formData.height.value" v-model:unit="formData.height.unit"
+                    :unit-options="heightUnits" placeholder="175" :min="120" :max="250"
+                    :class="{ 'border-red-300': !formData.height.value }" />
                 </UFormGroup>
 
                 <!-- Weight -->
@@ -102,16 +79,9 @@
                       Жин <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
-                  <UnitInput
-                    v-model="formData.weight.value"
-                    v-model:unit="formData.weight.unit"
-                    :unit-options="weightUnits"
-                    placeholder="70"
-                    :min="30"
-                    :max="300"
-                    :step="0.1"
-                    :class="{ 'border-red-300': !formData.weight.value }"
-                  />
+                  <UnitInput v-model="formData.weight.value" v-model:unit="formData.weight.unit"
+                    :unit-options="weightUnits" placeholder="70" :min="30" :max="300" :step="0.1"
+                    :class="{ 'border-red-300': !formData.weight.value }" />
                 </UFormGroup>
               </div>
 
@@ -133,12 +103,9 @@
                 Хөдөлгөөний түвшин
                 <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Заавал</span>
               </h3>
-              
-              <ActivitySelector
-                v-model="formData.activity"
-                description="Долоо хоногт хэр идэвхтэй байдаг вэ?"
-                :error="errors.activity"
-              />
+
+              <ActivitySelector v-model="formData.activity" description="Долоо хоногт хэр идэвхтэй байдаг вэ?"
+                :error="errors.activity" />
             </div>
 
             <!-- Body Fat Card -->
@@ -147,20 +114,16 @@
                 <UIcon name="i-heroicons-chart-bar" class="w-5 h-5 mr-2" />
                 Өөхний хувь (Заавал биш)
               </h3>
-              
-              <BodyFatSelector
-                v-model="formData.bodyFatData"
-                :gender="formData.gender"
-                :height-cm="metricMeasurements?.heightCm"
-                :weight-kg="metricMeasurements?.weightKg"
-                :error="errors.bodyFat"
-              />
+
+              <BodyFatSelector v-model="formData.bodyFatData" :gender="formData.gender"
+                :height-cm="metricMeasurements?.heightCm" :weight-kg="metricMeasurements?.weightKg"
+                :error="errors.bodyFat" />
             </div>
           </div>
 
           <!-- Right Column: Goals & Results -->
           <div class="space-y-6">
-            
+
             <!-- Goal Selection Card -->
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
@@ -168,42 +131,29 @@
                 Фитнесийн зорилго
                 <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Заавал</span>
               </h3>
-              
-              <GoalSelector
-                v-model="formData.goalType"
-                description="Таны үндсэн фитнесийн зорилго юу вэ?"
-                :error="errors.goalType"
-              />
+
+              <GoalSelector v-model="formData.goalType" description="Таны үндсэн фитнесийн зорилго юу вэ?"
+                :error="errors.goalType" />
             </div>
 
             <!-- Goal Weight & Pace (only for cut/bulk) -->
-            <div v-if="formData.goalType && formData.goalType !== 'maintain'" 
-                 class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <div v-if="formData.goalType && formData.goalType !== 'maintain'"
+              class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-calendar" class="w-5 h-5 mr-2" />
                 Зорилго ба хугацаа
               </h3>
-              
+
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Target Weight -->
                 <UFormGroup label="Зорилтот жин" name="targetWeight" :error="errors.targetWeight">
-                  <UnitInput
-                    v-model="formData.plan.targetWeightKg"
-                    v-model:unit="weightDisplayUnit"
-                    :unit-options="weightUnits"
-                    placeholder="65"
-                    :min="30"
-                    :max="300"
-                    :step="0.1"
-                  />
+                  <UnitInput v-model="formData.plan.targetWeightKg" v-model:unit="weightDisplayUnit"
+                    :unit-options="weightUnits" placeholder="65" :min="30" :max="300" :step="0.1" />
                   <template #help>
                     <div v-if="targetWeightSuggestion" class="text-xs text-gray-500 mt-1">
                       Санал болгох хүрээ: {{ targetWeightSuggestion.min }}-{{ targetWeightSuggestion.max }}кг
-                      <button 
-                        @click="formData.plan.targetWeightKg = targetWeightSuggestion.recommended"
-                        class="ml-2 text-blue-600 hover:text-blue-700 underline"
-                        type="button"
-                      >
+                      <button @click="formData.plan.targetWeightKg = targetWeightSuggestion.recommended"
+                        class="ml-2 text-blue-600 hover:text-blue-700 underline" type="button">
                         {{ targetWeightSuggestion.recommended }}кг ашиглах
                       </button>
                     </div>
@@ -212,15 +162,8 @@
 
                 <!-- Pace -->
                 <UFormGroup label="Хурд (кг/долоо хоног)" name="pace" :error="errors.pace">
-                  <UInput
-                    v-model.number="formData.plan.paceKgPerWeek"
-                    type="number"
-                    min="0.1"
-                    max="2"
-                    step="0.1"
-                    placeholder="0.5"
-                    size="lg"
-                  />
+                  <UInput v-model.number="formData.plan.paceKgPerWeek" type="number" min="0.1" max="2" step="0.1"
+                    placeholder="0.5" size="lg" />
                   <template #help>
                     <span class="text-xs text-gray-500">
                       Санал болгох: {{ recommendedPaceRange }}
@@ -248,7 +191,7 @@
                 <UIcon name="i-heroicons-fire" class="w-5 h-5 mr-2" />
                 Бодисын солилцооны тооцоо
               </h3>
-              
+
               <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
                 <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
                   <div class="text-2xl font-bold text-blue-600 dark:text-blue-400">
@@ -261,7 +204,7 @@
                     Үндсэн солилцоо
                   </div>
                 </div>
-                
+
                 <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
                   <div class="text-2xl font-bold text-green-600 dark:text-green-400">
                     {{ tdee?.toLocaleString() }}
@@ -298,9 +241,10 @@
                   </div>
                 </div>
               </div>
-              
+
               <!-- Calculation explanation -->
-              <div v-if="formData.goalType && formData.goalType !== 'maintain'" class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div v-if="formData.goalType && formData.goalType !== 'maintain'"
+                class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                 <div class="text-sm text-gray-600 dark:text-gray-400">
                   <strong>{{ formData.goalType === 'cut' ? 'Калорийн хасалт:' : 'Калорийн нэмэлт:' }}</strong>
                   {{ Math.abs((calorieTarget || 0) - (tdee || 0)) }} кал/өдөр
@@ -315,7 +259,7 @@
                 <UIcon name="i-heroicons-chart-pie" class="w-5 h-5 mr-2" />
                 Өдрийн макро зорилт
               </h3>
-              
+
               <div class="text-center mb-4">
                 <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">
                   {{ finalMacros.kcal.toLocaleString() }}
@@ -324,7 +268,7 @@
                   Өдрийн калори
                 </div>
               </div>
-              
+
               <div class="grid grid-cols-3 gap-3 text-center text-sm">
                 <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-3">
                   <div class="font-bold text-red-600 dark:text-red-400">{{ finalMacros.proteinG }}g</div>
@@ -344,41 +288,33 @@
         </div>
 
         <!-- Completion Hint -->
-        <div v-if="!isFormComplete" class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 text-center">
+        <div v-if="!isFormComplete"
+          class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 text-center">
           <div class="flex items-center justify-center text-amber-800 dark:text-amber-200">
             <UIcon name="i-heroicons-information-circle" class="w-5 h-5 mr-2" />
             <span class="font-medium">Үргэлжлүүлэхийн тулд заавал бөглөх талбаруудыг бөглөнө үү</span>
           </div>
           <div class="mt-2 text-sm text-amber-700 dark:text-amber-300">
-            Дутуу: <span v-if="!formData.gender">Хүйс</span><span v-if="!formData.gender && !formData.activity">, </span><span v-if="!formData.activity">Хөдөлгөөний түвшин</span><span v-if="(!formData.gender || !formData.activity) && !formData.goalType">, </span><span v-if="!formData.goalType">Фитнесийн зорилго</span>
+            Дутуу: <span v-if="!formData.gender">Хүйс</span><span v-if="!formData.gender && !formData.activity">,
+            </span><span v-if="!formData.activity">Хөдөлгөөний түвшин</span><span
+              v-if="(!formData.gender || !formData.activity) && !formData.goalType">, </span><span
+              v-if="!formData.goalType">Фитнесийн зорилго</span>
           </div>
         </div>
 
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6">
-          <UButton
-            variant="ghost"
-            @click="saveAndExit"
-          >
+          <UButton variant="ghost" @click="saveAndExit">
             Хадгалаад гарах
           </UButton>
-          
-          <UButton
-            type="submit"
-            :disabled="!isFormComplete"
-            :loading="isLoading"
-            size="lg"
-            class="px-8 relative"
-            :class="isFormComplete ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 pulse' : 'bg-gray-400'"
-          >
+
+          <UButton type="submit" :disabled="!isFormComplete" :loading="isLoading" size="lg" class="px-8 relative"
+            :class="isFormComplete ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 pulse' : 'bg-gray-400'">
             <UIcon name="i-heroicons-check" class="w-5 h-5 mr-2" />
             {{ isFormComplete ? 'Тохиргоог дуусгаад хоол үүсгэх!' : 'Тохиргоог дуусгах' }}
           </UButton>
-          
-          <UButton
-            variant="outline"
-            @click="resetForm"
-          >
+
+          <UButton variant="outline" @click="resetForm">
             <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 mr-2" />
             Дахин эхлэх
           </UButton>
@@ -454,7 +390,7 @@ const weightDisplayUnit = ref('kg')
 // Load existing data on mount
 onMounted(() => {
   onboardingStore.loadExistingOnboarding()
-  
+
   // Load existing data into form
   const existing = onboardingStore.physical
   if (existing.ageYears) formData.ageYears = existing.ageYears
@@ -464,12 +400,12 @@ onMounted(() => {
     formData.weight = { value: existing.weight.value, unit: existing.weight.unit as 'kg' | 'lb' }
     weightDisplayUnit.value = existing.weight.unit
   }
-  
+
   if (onboardingStore.activity) formData.activity = onboardingStore.activity
   if (onboardingStore.bodyFatData) formData.bodyFatData = { method: 'unknown', ...onboardingStore.bodyFatData }
   if (onboardingStore.goalType) formData.goalType = onboardingStore.goalType
   if (onboardingStore.plan) {
-    formData.plan = { 
+    formData.plan = {
       targetWeightKg: onboardingStore.plan.targetWeightKg || null,
       paceKgPerWeek: onboardingStore.plan.paceKgPerWeek || 0.5,
       estimatedWeeks: onboardingStore.plan.estimatedWeeks || 0
@@ -480,7 +416,7 @@ onMounted(() => {
 // Computed values
 const metricMeasurements = computed(() => {
   if (!formData.height.value || !formData.weight.value || !formData.gender) return null
-  
+
   return convertToMetric({
     ageYears: formData.ageYears,
     gender: formData.gender as 'male' | 'female',
@@ -492,16 +428,16 @@ const metricMeasurements = computed(() => {
 // BMI calculation
 const bmi = computed(() => {
   if (!metricMeasurements.value) return null
-  
+
   const heightM = metricMeasurements.value.heightCm / 100
   const weightKg = metricMeasurements.value.weightKg
-  
+
   return Math.round((weightKg / (heightM * heightM)) * 10) / 10
 })
 
 const bmiCategory = computed(() => {
   if (!bmi.value) return ''
-  
+
   if (bmi.value < 18.5) return 'Дутуу жинтэй'
   if (bmi.value < 25) return 'Хэвийн'
   if (bmi.value < 30) return 'Илүү жинтэй'
@@ -510,7 +446,7 @@ const bmiCategory = computed(() => {
 
 const bmiColorClass = computed(() => {
   if (!bmi.value) return ''
-  
+
   if (bmi.value < 18.5) return 'text-blue-600 dark:text-blue-400'
   if (bmi.value < 25) return 'text-green-600 dark:text-green-400'
   if (bmi.value < 30) return 'text-yellow-600 dark:text-yellow-400'
@@ -535,32 +471,32 @@ const tdee = computed(() => {
 
 const calorieTarget = computed(() => {
   if (!tdee.value || !formData.goalType || !formData.gender) return null
-  
+
   // For maintain goal, return TDEE
   if (formData.goalType === 'maintain') {
     return Math.round(tdee.value)
   }
-  
+
   // For cut/bulk goals, need pace
   if (!formData.plan.paceKgPerWeek) return null
-  
+
   // Use the proper calculation function from utils (imported at top)
   return calculateCalorieTarget(tdee.value, formData.goalType, formData.plan.paceKgPerWeek, formData.gender as 'male' | 'female')
 })
 
 const bodyFatPercent = computed(() => {
   if (!formData.gender || !metricMeasurements.value) return null
-  
+
   const gender = formData.gender as 'male' | 'female'
-  
+
   // Calculate body fat directly without side effects
   if (formData.bodyFatData.method === 'visual' && formData.bodyFatData.percent) {
     return formData.bodyFatData.percent
   }
-  
+
   // Estimate from BMI if no specific data
   if (!bmi.value) return null
-  
+
   // Simple BMI-based estimation
   const bmiVal = bmi.value
   if (gender === 'male') {
@@ -577,7 +513,7 @@ const leanBodyMass = computed(() => {
 
 const finalMacros = computed(() => {
   if (!calorieTarget.value || !formData.goalType || !metricMeasurements.value) return null
-  
+
   // Use the sophisticated macro calculation from utils
   return calculateMacros(
     calorieTarget.value,
@@ -589,7 +525,7 @@ const finalMacros = computed(() => {
 
 const timeline = computed(() => {
   if (!metricMeasurements.value || !formData.plan.targetWeightKg || !formData.plan.paceKgPerWeek) return null
-  
+
   return estimateTimeline(
     metricMeasurements.value.weightKg,
     formData.plan.targetWeightKg,
@@ -608,13 +544,13 @@ watch(() => formData.goalType, (newGoal) => {
   if (newGoal && newGoal !== 'maintain') {
     const range = getRecommendedPaceRange(newGoal)
     formData.plan.paceKgPerWeek = range.default
-    
+
     // Auto-suggest target weight based on BMI and goal
     if (metricMeasurements.value && !formData.plan.targetWeightKg) {
       const currentWeight = metricMeasurements.value.weightKg
       const heightM = metricMeasurements.value.heightCm / 100
       const currentBMI = currentWeight / (heightM * heightM)
-      
+
       let targetBMI: number
       if (newGoal === 'cut') {
         // Target healthy BMI range (20-24)
@@ -623,7 +559,7 @@ watch(() => formData.goalType, (newGoal) => {
         // Target slightly higher BMI but stay healthy (22-26)
         targetBMI = currentBMI < 22 ? 24 : Math.min(26, currentBMI + 2)
       }
-      
+
       const targetWeight = targetBMI * (heightM * heightM)
       formData.plan.targetWeightKg = Math.round(targetWeight * 2) / 2 // Round to 0.5kg
     }
@@ -633,11 +569,11 @@ watch(() => formData.goalType, (newGoal) => {
 // Suggested target weight range
 const targetWeightSuggestion = computed(() => {
   if (!metricMeasurements.value || !formData.goalType || formData.goalType === 'maintain') return null
-  
+
   const currentWeight = metricMeasurements.value.weightKg
   const heightM = metricMeasurements.value.heightCm / 100
   const currentBMI = currentWeight / (heightM * heightM)
-  
+
   if (formData.goalType === 'cut') {
     const healthyMinWeight = 18.5 * (heightM * heightM)
     const healthyMaxWeight = 24.9 * (heightM * heightM)
@@ -665,38 +601,38 @@ const targetWeightSuggestion = computed(() => {
 const completionPercentage = computed(() => {
   let completed = 0
   const total = 7
-  
+
   // Age validation
   if (formData.ageYears >= 13 && formData.ageYears <= 100) completed++
-  
+
   // Gender validation
   if (formData.gender) completed++
-  
+
   // Height validation with unit consideration
-  const heightValid = formData.height.unit === 'cm' 
+  const heightValid = formData.height.unit === 'cm'
     ? formData.height.value >= 120 && formData.height.value <= 250
     : formData.height.value >= 47 && formData.height.value <= 98 // inches
   if (heightValid) completed++
-  
+
   // Weight validation with unit consideration
   const weightValid = formData.weight.unit === 'kg'
     ? formData.weight.value >= 30 && formData.weight.value <= 300
     : formData.weight.value >= 66 && formData.weight.value <= 660 // pounds
   if (weightValid) completed++
-  
+
   // Activity level
   if (formData.activity) completed++
-  
+
   // Goal type
   if (formData.goalType) completed++
-  
+
   // Goal-specific requirements
   if (formData.goalType === 'maintain') {
     completed++ // No additional requirements for maintain
   } else if (formData.goalType && formData.plan.targetWeightKg && formData.plan.paceKgPerWeek > 0) {
     completed++ // Need target weight and pace for cut/bulk
   }
-  
+
   return Math.round((completed / total) * 100)
 })
 
@@ -706,25 +642,25 @@ const showMetabolicPreview = computed(() => {
 
 const isFormComplete = computed(() => {
   const basicValid = formData.ageYears >= 13 && formData.ageYears <= 100 &&
-                    formData.gender &&
-                    formData.height.value >= 120 && formData.height.value <= 250 &&
-                    formData.weight.value >= 30 && formData.weight.value <= 300 &&
-                    formData.activity &&
-                    formData.goalType
-  
+    formData.gender &&
+    formData.height.value >= 120 && formData.height.value <= 250 &&
+    formData.weight.value >= 30 && formData.weight.value <= 300 &&
+    formData.activity &&
+    formData.goalType
+
   if (!basicValid) return false
-  
+
   // For maintain goal, no target weight needed
   if (formData.goalType === 'maintain') return true
-  
+
   // For cut/bulk, need target weight and pace
   return formData.plan.targetWeightKg && formData.plan.paceKgPerWeek
 })
 
 // Methods
 function formatDate(date: Date): string {
-  return date.toLocaleDateString(undefined, { 
-    month: 'short', 
+  return date.toLocaleDateString(undefined, {
+    month: 'short',
     day: 'numeric',
     year: date.getFullYear() !== new Date().getFullYear() ? 'numeric' : undefined
   })
@@ -732,56 +668,56 @@ function formatDate(date: Date): string {
 
 function validateForm(): boolean {
   errors.value = {}
-  
+
   if (!formData.ageYears || formData.ageYears < 13 || formData.ageYears > 100) {
     errors.value.age = 'Нас 13-100 хооронд байх ёстой'
   }
-  
+
   if (!formData.gender) {
     errors.value.gender = 'Хүйсээ сонгоно уу'
   }
-  
+
   if (!formData.height.value || formData.height.value < 120 || formData.height.value > 250) {
     errors.value.height = 'Зөв өндөр оруулна уу'
   }
-  
+
   if (!formData.weight.value || formData.weight.value < 30 || formData.weight.value > 300) {
     errors.value.weight = 'Зөв жин оруулна уу'
   }
-  
+
   if (!formData.activity) {
     errors.value.activity = 'Хөдөлгөөний түвшингээ сонгоно уу'
   }
-  
+
   if (!formData.goalType) {
     errors.value.goalType = 'Фитнесийн зорилгоо сонгоно уу'
   }
-  
+
   if (formData.goalType && formData.goalType !== 'maintain') {
     if (!formData.plan.targetWeightKg) {
       errors.value.targetWeight = 'Зорилтот жингээ оруулна уу'
     }
-    
+
     if (!formData.plan.paceKgPerWeek || formData.plan.paceKgPerWeek <= 0) {
       errors.value.pace = 'Зөв хурд оруулна уу'
     }
   }
-  
+
   return Object.keys(errors.value).length === 0
 }
 
 async function handleSubmit() {
   if (!validateForm() || !isFormComplete.value) return
-  
+
   isLoading.value = true
   statusMessage.value = null
-  
+
   try {
     // Ensure all required data is present
     if (!formData.gender || !metricMeasurements.value || !formData.activity || !formData.goalType) {
       throw new Error('Missing required form data')
     }
-    
+
     // Save physical data to store
     onboardingStore.setPhysical({
       ageYears: formData.ageYears,
@@ -789,20 +725,20 @@ async function handleSubmit() {
       height: { value: formData.height.value, unit: formData.height.unit as 'cm' | 'in' },
       weight: { value: formData.weight.value, unit: formData.weight.unit as 'kg' | 'lb' }
     })
-    
+
     // Save activity
     onboardingStore.setActivity(formData.activity)
-    
+
     // Save body fat data with proper default
     const bodyFatData = {
       method: formData.bodyFatData.method || 'unknown',
       percent: bodyFatPercent.value || undefined
     } as BodyFatInput
     onboardingStore.setBodyFat(bodyFatData)
-    
+
     // Save goal
     onboardingStore.setGoal(formData.goalType)
-    
+
     // Save plan
     if (formData.goalType === 'maintain') {
       onboardingStore.setPlan({
@@ -822,20 +758,20 @@ async function handleSubmit() {
         )
       })
     }
-    
+
     // Wait a tick for store to update
     await nextTick()
-    
+
     // Complete onboarding
     const result = await onboardingStore.saveToFirestore()
-    
+
     if (result.success) {
       statusMessage.value = {
         text: 'Тохиргоо амжилттай дууслаа! Хоол үүсгэх хэсэг рүү шилжиж байна...',
         class: 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200',
         icon: 'i-heroicons-check-circle'
       }
-      
+
       setTimeout(() => {
         navigateTo('/meal-generation')
       }, 2000)
@@ -871,7 +807,7 @@ function saveAndExit() {
   if (formData.activity) onboardingStore.setActivity(formData.activity)
   if (formData.bodyFatData) onboardingStore.setBodyFat(formData.bodyFatData)
   if (formData.goalType) onboardingStore.setGoal(formData.goalType)
-  
+
   navigateTo('/')
 }
 
@@ -915,9 +851,12 @@ useHead({
 
 <style scoped>
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
   }
+
   50% {
     box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
   }
