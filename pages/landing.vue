@@ -4,6 +4,7 @@
         <LandingIngredientMarquee />
         <LandingHowItWorks />
         <LandingFeatures :features="detailedFeatures" />
+        <LandingPoweredBy />
         <LandingTestimonials :items="testimonials" />
         <section class="relative overflow-hidden" style="background-color: var(--color-bg)">
             <div class="cta-bg" aria-hidden="true"></div>
@@ -29,6 +30,7 @@ import LandingHero from '~/components/landing/LandingHero.vue'
 import LandingHowItWorks from '~/components/landing/LandingHowItWorks.vue'
 import LandingFeatures from '~/components/landing/LandingFeatures.vue'
 import LandingIngredientMarquee from '~/components/landing/LandingIngredientMarquee.vue'
+import LandingPoweredBy from '~/components/landing/LandingPoweredBy.vue'
 import LandingTestimonials from '~/components/landing/LandingTestimonials.vue'
 
 definePageMeta({
