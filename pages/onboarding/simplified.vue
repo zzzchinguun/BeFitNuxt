@@ -4,10 +4,10 @@
       <!-- Header -->
       <div class="text-center mb-8">
         <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-          Set Up Your Fitness Plan
+          Фитнес төлөвлөгөө тохируулах
         </h1>
         <p class="text-xl text-gray-600 dark:text-gray-400">
-          Complete your profile in one simple form
+          Профайлаа нэг энгийн маягтаар бөглөнө үү
         </p>
       </div>
 
@@ -20,7 +20,7 @@
           />
         </div>
         <div class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          {{ completionPercentage }}% Complete
+          {{ completionPercentage }}% бөглөгдсөн
         </div>
       </div>
 
@@ -35,8 +35,8 @@
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-user" class="w-5 h-5 mr-2" />
-                Personal Details
-                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                Хувийн мэдээлэл
+                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Заавал</span>
               </h3>
               
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -44,7 +44,7 @@
                 <UFormGroup name="age" :error="errors.age">
                   <template #label>
                     <div class="flex items-center">
-                      Age <span class="text-red-500 ml-1">*</span>
+                      Нас <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
                   <UInput
@@ -63,15 +63,17 @@
                 <UFormGroup name="gender" :error="errors.gender">
                   <template #label>
                     <div class="flex items-center">
-                      Gender <span class="text-red-500 ml-1">*</span>
+                      Хүйс <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
                   <USelect
                     v-model="formData.gender"
                     :options="genderOptions"
-                    placeholder="Select gender"
+                    placeholder="Хүйс сонгох"
                     size="lg"
                     :class="{ 'border-red-300': !formData.gender }"
+                    value-attribute="value"
+                    option-attribute="label"
                   />
                 </UFormGroup>
 
@@ -79,7 +81,7 @@
                 <UFormGroup name="height" :error="errors.height">
                   <template #label>
                     <div class="flex items-center">
-                      Height <span class="text-red-500 ml-1">*</span>
+                      Өндөр <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
                   <UnitInput
@@ -97,7 +99,7 @@
                 <UFormGroup name="weight" :error="errors.weight">
                   <template #label>
                     <div class="flex items-center">
-                      Weight <span class="text-red-500 ml-1">*</span>
+                      Жин <span class="text-red-500 ml-1">*</span>
                     </div>
                   </template>
                   <UnitInput
@@ -128,13 +130,13 @@
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-bolt" class="w-5 h-5 mr-2" />
-                Activity Level
-                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                Хөдөлгөөний түвшин
+                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Заавал</span>
               </h3>
               
               <ActivitySelector
                 v-model="formData.activity"
-                description="How active are you during a typical week?"
+                description="Долоо хоногт хэр идэвхтэй байдаг вэ?"
                 :error="errors.activity"
               />
             </div>
@@ -143,7 +145,7 @@
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-chart-bar" class="w-5 h-5 mr-2" />
-                Body Fat (Optional)
+                Өөхний хувь (Заавал биш)
               </h3>
               
               <BodyFatSelector
@@ -163,13 +165,13 @@
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-target" class="w-5 h-5 mr-2" />
-                Fitness Goal
-                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                Фитнесийн зорилго
+                <span class="ml-2 text-sm bg-red-100 text-red-800 px-2 py-1 rounded-full">Заавал</span>
               </h3>
               
               <GoalSelector
                 v-model="formData.goalType"
-                description="What's your primary fitness goal?"
+                description="Таны үндсэн фитнесийн зорилго юу вэ?"
                 :error="errors.goalType"
               />
             </div>
@@ -179,12 +181,12 @@
                  class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-calendar" class="w-5 h-5 mr-2" />
-                Target & Timeline
+                Зорилго ба хугацаа
               </h3>
               
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Target Weight -->
-                <UFormGroup label="Target Weight" name="targetWeight" :error="errors.targetWeight">
+                <UFormGroup label="Зорилтот жин" name="targetWeight" :error="errors.targetWeight">
                   <UnitInput
                     v-model="formData.plan.targetWeightKg"
                     v-model:unit="weightDisplayUnit"
@@ -196,20 +198,20 @@
                   />
                   <template #help>
                     <div v-if="targetWeightSuggestion" class="text-xs text-gray-500 mt-1">
-                      Suggested range: {{ targetWeightSuggestion.min }}-{{ targetWeightSuggestion.max }}kg
+                      Санал болгох хүрээ: {{ targetWeightSuggestion.min }}-{{ targetWeightSuggestion.max }}кг
                       <button 
                         @click="formData.plan.targetWeightKg = targetWeightSuggestion.recommended"
                         class="ml-2 text-blue-600 hover:text-blue-700 underline"
                         type="button"
                       >
-                        Use {{ targetWeightSuggestion.recommended }}kg
+                        {{ targetWeightSuggestion.recommended }}кг ашиглах
                       </button>
                     </div>
                   </template>
                 </UFormGroup>
 
                 <!-- Pace -->
-                <UFormGroup label="Pace (kg/week)" name="pace" :error="errors.pace">
+                <UFormGroup label="Хурд (кг/долоо хоног)" name="pace" :error="errors.pace">
                   <UInput
                     v-model.number="formData.plan.paceKgPerWeek"
                     type="number"
@@ -221,7 +223,7 @@
                   />
                   <template #help>
                     <span class="text-xs text-gray-500">
-                      Recommended: {{ recommendedPaceRange }}
+                      Санал болгох: {{ recommendedPaceRange }}
                     </span>
                   </template>
                 </UFormGroup>
@@ -231,10 +233,10 @@
               <div v-if="timeline" class="mt-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
                 <div class="text-center">
                   <div class="text-lg font-semibold text-blue-900 dark:text-blue-100">
-                    Estimated Timeline: {{ timeline.estimatedWeeks }} weeks
+                    Тооцоолсон хугацаа: {{ timeline.estimatedWeeks }} долоо хоног
                   </div>
                   <div class="text-sm text-blue-700 dark:text-blue-300">
-                    Target date: {{ formatDate(timeline.finishDate) }}
+                    Зорилтот огноо: {{ formatDate(timeline.finishDate) }}
                   </div>
                 </div>
               </div>
@@ -244,7 +246,7 @@
             <div v-if="showMetabolicPreview" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-fire" class="w-5 h-5 mr-2" />
-                Metabolic Calculations
+                Бодисын солилцооны тооцоо
               </h3>
               
               <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
@@ -256,7 +258,7 @@
                     BMR (cal/day)
                   </div>
                   <div class="text-xs text-blue-600 dark:text-blue-300 mt-1">
-                    Base metabolism
+                    Үндсэн солилцоо
                   </div>
                 </div>
                 
@@ -268,7 +270,7 @@
                     TDEE (cal/day)
                   </div>
                   <div class="text-xs text-green-600 dark:text-green-300 mt-1">
-                    With activity
+                    Хөдөлгөөнтэй
                   </div>
                 </div>
 
@@ -277,10 +279,10 @@
                     {{ calorieTarget.toLocaleString() }}
                   </div>
                   <div class="text-sm text-purple-800 dark:text-purple-200">
-                    Target Calories
+                    Зорилтот калори
                   </div>
                   <div class="text-xs text-purple-600 dark:text-purple-300 mt-1">
-                    {{ formData.goalType === 'cut' ? 'Deficit' : formData.goalType === 'bulk' ? 'Surplus' : 'Maintain' }}
+                    {{ formData.goalType === 'cut' ? 'Хасах' : formData.goalType === 'bulk' ? 'Нэмэх' : 'Хадгалах' }}
                   </div>
                 </div>
 
@@ -289,10 +291,10 @@
                     {{ Math.round(bodyFatPercent) }}%
                   </div>
                   <div class="text-sm text-yellow-800 dark:text-yellow-200">
-                    Body Fat
+                    Өөхний хувь
                   </div>
                   <div v-if="leanBodyMass" class="text-xs text-yellow-600 dark:text-yellow-300 mt-1">
-                    {{ Math.round(leanBodyMass * 10) / 10 }}kg lean
+                    {{ Math.round(leanBodyMass * 10) / 10 }}кг цэвэр
                   </div>
                 </div>
               </div>
@@ -300,9 +302,9 @@
               <!-- Calculation explanation -->
               <div v-if="formData.goalType && formData.goalType !== 'maintain'" class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                 <div class="text-sm text-gray-600 dark:text-gray-400">
-                  <strong>{{ formData.goalType === 'cut' ? 'Calorie Deficit:' : 'Calorie Surplus:' }}</strong>
-                  {{ Math.abs((calorieTarget || 0) - (tdee || 0)) }} cal/day
-                  ({{ formData.plan.paceKgPerWeek }}kg/week pace)
+                  <strong>{{ formData.goalType === 'cut' ? 'Калорийн хасалт:' : 'Калорийн нэмэлт:' }}</strong>
+                  {{ Math.abs((calorieTarget || 0) - (tdee || 0)) }} кал/өдөр
+                  ({{ formData.plan.paceKgPerWeek }}кг/долоо хоног хурд)
                 </div>
               </div>
             </div>
@@ -311,7 +313,7 @@
             <div v-if="finalMacros" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center">
                 <UIcon name="i-heroicons-chart-pie" class="w-5 h-5 mr-2" />
-                Daily Macro Targets
+                Өдрийн макро зорилт
               </h3>
               
               <div class="text-center mb-4">
@@ -319,22 +321,22 @@
                   {{ finalMacros.kcal.toLocaleString() }}
                 </div>
                 <div class="text-sm text-gray-600 dark:text-gray-400">
-                  Daily Calories
+                  Өдрийн калори
                 </div>
               </div>
               
               <div class="grid grid-cols-3 gap-3 text-center text-sm">
                 <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-3">
                   <div class="font-bold text-red-600 dark:text-red-400">{{ finalMacros.proteinG }}g</div>
-                  <div class="text-red-800 dark:text-red-200">Protein</div>
+                  <div class="text-red-800 dark:text-red-200">Уураг</div>
                 </div>
                 <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
                   <div class="font-bold text-green-600 dark:text-green-400">{{ finalMacros.carbsG }}g</div>
-                  <div class="text-green-800 dark:text-green-200">Carbs</div>
+                  <div class="text-green-800 dark:text-green-200">Нүүрс ус</div>
                 </div>
                 <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3">
                   <div class="font-bold text-yellow-600 dark:text-yellow-400">{{ finalMacros.fatG }}g</div>
-                  <div class="text-yellow-800 dark:text-yellow-200">Fat</div>
+                  <div class="text-yellow-800 dark:text-yellow-200">Өөх тос</div>
                 </div>
               </div>
             </div>
@@ -345,10 +347,10 @@
         <div v-if="!isFormComplete" class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 text-center">
           <div class="flex items-center justify-center text-amber-800 dark:text-amber-200">
             <UIcon name="i-heroicons-information-circle" class="w-5 h-5 mr-2" />
-            <span class="font-medium">Complete all required fields to continue</span>
+            <span class="font-medium">Үргэлжлүүлэхийн тулд заавал бөглөх талбаруудыг бөглөнө үү</span>
           </div>
           <div class="mt-2 text-sm text-amber-700 dark:text-amber-300">
-            Missing: <span v-if="!formData.gender">Gender</span><span v-if="!formData.gender && !formData.activity">, </span><span v-if="!formData.activity">Activity Level</span><span v-if="(!formData.gender || !formData.activity) && !formData.goalType">, </span><span v-if="!formData.goalType">Fitness Goal</span>
+            Дутуу: <span v-if="!formData.gender">Хүйс</span><span v-if="!formData.gender && !formData.activity">, </span><span v-if="!formData.activity">Хөдөлгөөний түвшин</span><span v-if="(!formData.gender || !formData.activity) && !formData.goalType">, </span><span v-if="!formData.goalType">Фитнесийн зорилго</span>
           </div>
         </div>
 
@@ -358,7 +360,7 @@
             variant="ghost"
             @click="saveAndExit"
           >
-            Save & Exit
+            Хадгалаад гарах
           </UButton>
           
           <UButton
@@ -370,7 +372,7 @@
             :class="isFormComplete ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 pulse' : 'bg-gray-400'"
           >
             <UIcon name="i-heroicons-check" class="w-5 h-5 mr-2" />
-            {{ isFormComplete ? 'Complete Setup & Generate Meals!' : 'Complete Setup' }}
+            {{ isFormComplete ? 'Тохиргоог дуусгаад хоол үүсгэх!' : 'Тохиргоог дуусгах' }}
           </UButton>
           
           <UButton
@@ -378,7 +380,7 @@
             @click="resetForm"
           >
             <UIcon name="i-heroicons-arrow-path" class="w-4 h-4 mr-2" />
-            Reset
+            Дахин эхлэх
           </UButton>
         </div>
 
@@ -423,8 +425,8 @@ const formData = reactive({
 
 // Form options
 const genderOptions = [
-  { label: 'Male', value: 'male' },
-  { label: 'Female', value: 'female' }
+  { label: 'Эрэгтэй', value: 'male' },
+  { label: 'Эмэгтэй', value: 'female' }
 ]
 
 const heightUnits = [
@@ -457,17 +459,21 @@ onMounted(() => {
   const existing = onboardingStore.physical
   if (existing.ageYears) formData.ageYears = existing.ageYears
   if (existing.gender) formData.gender = existing.gender
-  if (existing.height) formData.height = { ...existing.height }
+  if (existing.height) formData.height = { value: existing.height.value, unit: existing.height.unit as 'cm' | 'in' }
   if (existing.weight) {
-    formData.weight = { ...existing.weight }
+    formData.weight = { value: existing.weight.value, unit: existing.weight.unit as 'kg' | 'lb' }
     weightDisplayUnit.value = existing.weight.unit
   }
   
   if (onboardingStore.activity) formData.activity = onboardingStore.activity
-  if (onboardingStore.bodyFatData) formData.bodyFatData = { ...onboardingStore.bodyFatData }
+  if (onboardingStore.bodyFatData) formData.bodyFatData = { method: 'unknown', ...onboardingStore.bodyFatData }
   if (onboardingStore.goalType) formData.goalType = onboardingStore.goalType
   if (onboardingStore.plan) {
-    formData.plan = { ...onboardingStore.plan }
+    formData.plan = { 
+      targetWeightKg: onboardingStore.plan.targetWeightKg || null,
+      paceKgPerWeek: onboardingStore.plan.paceKgPerWeek || 0.5,
+      estimatedWeeks: onboardingStore.plan.estimatedWeeks || 0
+    }
   }
 })
 
@@ -477,9 +483,9 @@ const metricMeasurements = computed(() => {
   
   return convertToMetric({
     ageYears: formData.ageYears,
-    gender: formData.gender,
-    height: formData.height,
-    weight: formData.weight
+    gender: formData.gender as 'male' | 'female',
+    height: { value: formData.height.value, unit: formData.height.unit as 'cm' | 'in' },
+    weight: { value: formData.weight.value, unit: formData.weight.unit as 'kg' | 'lb' }
   })
 })
 
@@ -496,10 +502,10 @@ const bmi = computed(() => {
 const bmiCategory = computed(() => {
   if (!bmi.value) return ''
   
-  if (bmi.value < 18.5) return 'Underweight'
-  if (bmi.value < 25) return 'Normal'
-  if (bmi.value < 30) return 'Overweight'
-  return 'Obese'
+  if (bmi.value < 18.5) return 'Дутуу жинтэй'
+  if (bmi.value < 25) return 'Хэвийн'
+  if (bmi.value < 30) return 'Илүү жинтэй'
+  return 'Таргалалттай'
 })
 
 const bmiColorClass = computed(() => {
@@ -513,12 +519,12 @@ const bmiColorClass = computed(() => {
 
 // Metabolic calculations
 const bmr = computed(() => {
-  if (!metricMeasurements.value) return null
+  if (!metricMeasurements.value || !formData.gender) return null
   return calculateBMR(
     metricMeasurements.value.weightKg,
     metricMeasurements.value.heightCm,
     formData.ageYears,
-    formData.gender!
+    formData.gender as 'male' | 'female'
   )
 })
 
@@ -539,11 +545,13 @@ const calorieTarget = computed(() => {
   if (!formData.plan.paceKgPerWeek) return null
   
   // Use the proper calculation function from utils (imported at top)
-  return calculateCalorieTarget(tdee.value, formData.goalType, formData.plan.paceKgPerWeek, formData.gender)
+  return calculateCalorieTarget(tdee.value, formData.goalType, formData.plan.paceKgPerWeek, formData.gender as 'male' | 'female')
 })
 
 const bodyFatPercent = computed(() => {
   if (!formData.gender || !metricMeasurements.value) return null
+  
+  const gender = formData.gender as 'male' | 'female'
   
   // Calculate body fat directly without side effects
   if (formData.bodyFatData.method === 'visual' && formData.bodyFatData.percent) {
@@ -555,7 +563,7 @@ const bodyFatPercent = computed(() => {
   
   // Simple BMI-based estimation
   const bmiVal = bmi.value
-  if (formData.gender === 'male') {
+  if (gender === 'male') {
     return Math.max(5, Math.min(35, (bmiVal - 15) * 1.2 + 10))
   } else {
     return Math.max(10, Math.min(40, (bmiVal - 15) * 1.5 + 15))
@@ -592,7 +600,7 @@ const timeline = computed(() => {
 const recommendedPaceRange = computed(() => {
   if (!formData.goalType) return ''
   const range = getRecommendedPaceRange(formData.goalType)
-  return `${range.min}-${range.max} kg/week (recommended)`
+  return `${range.min}-${range.max} кг/долоо хоног (санал болгох)`
 })
 
 // Auto-set recommended pace when goal changes
@@ -726,36 +734,36 @@ function validateForm(): boolean {
   errors.value = {}
   
   if (!formData.ageYears || formData.ageYears < 13 || formData.ageYears > 100) {
-    errors.value.age = 'Age must be between 13 and 100'
+    errors.value.age = 'Нас 13-100 хооронд байх ёстой'
   }
   
   if (!formData.gender) {
-    errors.value.gender = 'Please select your gender'
+    errors.value.gender = 'Хүйсээ сонгоно уу'
   }
   
   if (!formData.height.value || formData.height.value < 120 || formData.height.value > 250) {
-    errors.value.height = 'Please enter a valid height'
+    errors.value.height = 'Зөв өндөр оруулна уу'
   }
   
   if (!formData.weight.value || formData.weight.value < 30 || formData.weight.value > 300) {
-    errors.value.weight = 'Please enter a valid weight'
+    errors.value.weight = 'Зөв жин оруулна уу'
   }
   
   if (!formData.activity) {
-    errors.value.activity = 'Please select your activity level'
+    errors.value.activity = 'Хөдөлгөөний түвшингээ сонгоно уу'
   }
   
   if (!formData.goalType) {
-    errors.value.goalType = 'Please select your fitness goal'
+    errors.value.goalType = 'Фитнесийн зорилгоо сонгоно уу'
   }
   
   if (formData.goalType && formData.goalType !== 'maintain') {
     if (!formData.plan.targetWeightKg) {
-      errors.value.targetWeight = 'Please enter your target weight'
+      errors.value.targetWeight = 'Зорилтот жингээ оруулна уу'
     }
     
     if (!formData.plan.paceKgPerWeek || formData.plan.paceKgPerWeek <= 0) {
-      errors.value.pace = 'Please enter a valid pace'
+      errors.value.pace = 'Зөв хурд оруулна уу'
     }
   }
   
@@ -777,9 +785,9 @@ async function handleSubmit() {
     // Save physical data to store
     onboardingStore.setPhysical({
       ageYears: formData.ageYears,
-      gender: formData.gender,
-      height: formData.height,
-      weight: formData.weight
+      gender: formData.gender!,
+      height: { value: formData.height.value, unit: formData.height.unit as 'cm' | 'in' },
+      weight: { value: formData.weight.value, unit: formData.weight.unit as 'kg' | 'lb' }
     })
     
     // Save activity
@@ -823,7 +831,7 @@ async function handleSubmit() {
     
     if (result.success) {
       statusMessage.value = {
-        text: 'Setup completed successfully! Redirecting to meal generation...',
+        text: 'Тохиргоо амжилттай дууслаа! Хоол үүсгэх хэсэг рүү шилжиж байна...',
         class: 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200',
         icon: 'i-heroicons-check-circle'
       }
@@ -833,7 +841,7 @@ async function handleSubmit() {
       }, 2000)
     } else {
       statusMessage.value = {
-        text: result.error || 'Failed to save your plan. Please try again.',
+        text: result.error || 'Төлөвлөгөө хадгалахад алдаа гарлаа. Дахин оролдоно уу.',
         class: 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200',
         icon: 'i-heroicons-exclamation-circle'
       }
@@ -841,7 +849,7 @@ async function handleSubmit() {
   } catch (error: any) {
     console.error('Onboarding completion error:', error)
     statusMessage.value = {
-      text: error.message || 'Failed to save your plan. Please try again.',
+      text: error.message || 'Төлөвлөгөө хадгалахад алдаа гарлаа. Дахин оролдоно уу.',
       class: 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200',
       icon: 'i-heroicons-exclamation-circle'
     }
@@ -856,8 +864,8 @@ function saveAndExit() {
     onboardingStore.setPhysical({
       ageYears: formData.ageYears,
       gender: formData.gender,
-      height: formData.height,
-      weight: formData.weight
+      height: { value: formData.height.value, unit: formData.height.unit as 'cm' | 'in' },
+      weight: { value: formData.weight.value, unit: formData.weight.unit as 'kg' | 'lb' }
     })
   }
   if (formData.activity) onboardingStore.setActivity(formData.activity)
@@ -868,7 +876,7 @@ function saveAndExit() {
 }
 
 function resetForm() {
-  if (confirm('Are you sure you want to reset the form? This will clear all your progress.')) {
+  if (confirm('Маягтыг дахин эхлүүлэхдээ итгэлтэй байна уу? Энэ нь бүх ахиц дэвшлийг арилгана.')) {
     onboardingStore.reset()
     Object.assign(formData, {
       ageYears: 25,
@@ -901,7 +909,7 @@ watch(weightDisplayUnit, (newUnit) => {
 
 // Set page title
 useHead({
-  title: 'Simplified Onboarding - BeFit'
+  title: 'Хялбарчилсан бүртгэл - BeFit'
 })
 </script>
 
