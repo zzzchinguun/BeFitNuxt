@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxtjs/color-mode'
   ],
 
   css: ['~/assets/css/main.css'],
@@ -44,6 +45,13 @@ export default defineNuxtConfig({
   tailwindcss: {
     viewer: false,
     quiet: true
+  },
+
+  // Color mode configuration
+  colorMode: {
+    preference: 'system', // default theme
+    dataValue: 'theme', // activate data-theme in <html> tag
+    classSuffix: '', // no suffix for classes
   },
 
 

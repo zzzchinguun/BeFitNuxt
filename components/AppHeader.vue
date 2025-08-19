@@ -11,7 +11,10 @@
         </div>
 
         <!-- User menu -->
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-3">
+          <!-- Color mode switcher -->
+          <ColorModeSwitcher :show-tooltip="false" />
+          
           <!-- User dropdown -->
           <UDropdown :items="userMenuItems">
             <UButton variant="ghost" :icon="authStore.user?.photoURL ? undefined : 'i-heroicons-user-circle'"

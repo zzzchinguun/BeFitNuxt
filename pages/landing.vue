@@ -1,5 +1,8 @@
 <template>
     <div>
+        <!-- GWG Welcome Modal -->
+        <GWGWelcomeModal />
+        
         <LandingHero :mock-stats="mockStats" @get-started="handleGetStarted" />
         <LandingPoweredBy />
         <LandingIngredientMarquee />
@@ -32,6 +35,7 @@ import LandingFeatures from '~/components/landing/LandingFeatures.vue'
 import LandingIngredientMarquee from '~/components/landing/LandingIngredientMarquee.vue'
 import LandingPoweredBy from '~/components/landing/LandingPoweredBy.vue'
 import LandingTestimonials from '~/components/landing/LandingTestimonials.vue'
+import GWGWelcomeModal from '~/components/landing/GWGWelcomeModal.vue'
 
 definePageMeta({
     layout: 'landing'

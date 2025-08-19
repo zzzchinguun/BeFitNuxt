@@ -9,15 +9,20 @@
                 <button class="nav-link" @click="scrollTo('#features')">Онцлогууд</button>
                 <button class="nav-link" @click="scrollTo('#testimonials')">Сэтгэгдэл</button>
             </div>
-            <div v-if="!isAuthenticated" class="flex items-center space-x-3">
-                <UButton variant="ghost"
-                    class="text-gray-700 dark:text-gray-200 hover:bg-gray-100/70 dark:hover:bg-gray-800/70"
-                    @click="navigateTo('/auth/login')">Нэвтрэх</UButton>
-                <UButton class="px-5 py-2 bg-accent text-white rounded-xl hover:brightness-110 transition"
-                    @click="navigateTo('/auth/register')">Бүртгүүлэх</UButton>
-            </div>
-            <div v-else>
-                <UButton variant="solid" color="primary" @click="navigateTo('/')">Хяналтын самбар</UButton>
+            <div class="flex items-center space-x-3">
+                <!-- Color mode switcher -->
+                <ColorModeSwitcher :show-tooltip="false" />
+                
+                <div v-if="!isAuthenticated" class="flex items-center space-x-3">
+                    <UButton variant="ghost"
+                        class="text-gray-700 dark:text-gray-200 hover:bg-gray-100/70 dark:hover:bg-gray-800/70"
+                        @click="navigateTo('/auth/login')">Нэвтрэх</UButton>
+                    <UButton class="px-5 py-2 bg-accent text-white rounded-xl hover:brightness-110 transition"
+                        @click="navigateTo('/auth/register')">Бүртгүүлэх</UButton>
+                </div>
+                <div v-else>
+                    <UButton variant="solid" color="primary" @click="navigateTo('/')">Хяналтын самбар</UButton>
+                </div>
             </div>
         </nav>
     </header>
